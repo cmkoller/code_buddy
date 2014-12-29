@@ -11,9 +11,15 @@ class  ResourcesController < ApplicationController
   end
 
   def create
-    @resource = Resource.new
-    flash[:notice] = "You've successfully submitted a resource!"
-    redirect_to @resource
+    @resource = Resource.new(resource_params)
+
+    if @resource.save
+      flash[:notice] = "You've successfully submitted a resource!"
+      redirect_to resources_path
+    else
+      flash[:notice] = "Fail"
+      render 'new'
+    end
   end
 
   private
