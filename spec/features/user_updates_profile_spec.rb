@@ -13,9 +13,9 @@ Acceptance Criteria
 
 ) do
 
+  let(:user){ FactoryGirl.create(:user) }
 
   before(:each) do
-  user = FactoryGirl.create(:user)
     visit new_user_session_path
     fill_in "Email", with: user.email
     fill_in "Password", with: user.password
@@ -24,9 +24,9 @@ Acceptance Criteria
   end
 
   scenario 'user successfully updates email' do
-    # fill_in "Email", with: "example@email.com"
-    # fill_in "Current Password", with: "password"
-    # click_button "Sign up"
-    # expect(page).to have_content("You have signed up successfully")
+    fill_in "Email", with: "new@email.com"
+    fill_in "Current password", with: "password"
+    click_button "Update"
+    expect(page).to have_content("Your account has been updated successfully")
   end
 end
