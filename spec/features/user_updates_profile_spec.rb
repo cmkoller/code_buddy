@@ -13,9 +13,9 @@ Acceptance Criteria
 
 ) do
 
-  user = FactoryGirl.create(:user)
 
   before(:each) do
+  user = FactoryGirl.create(:user)
     visit new_user_session_path
     fill_in "Email", with: user.email
     fill_in "Password", with: user.password
@@ -27,6 +27,6 @@ Acceptance Criteria
     # fill_in "Email", with: "example@email.com"
     # fill_in "Current Password", with: "password"
     # click_button "Sign up"
-    # expect(page).to have_content("You've successfully registered!")
+    # expect(page).to have_content("You have signed up successfully")
   end
 end
