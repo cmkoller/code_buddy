@@ -16,5 +16,14 @@ class  ResourcesController < ApplicationController
     redirect_to @resource
   end
 
+  private
+
+  def resource_params
+    params.require(:resource).permit(:title, :description, :url)
+  end
+
+  def find_resource
+    @resource = Resource.find(params[:id])
+  end
 
 end
