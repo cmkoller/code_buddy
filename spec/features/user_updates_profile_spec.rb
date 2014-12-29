@@ -25,8 +25,30 @@ Acceptance Criteria
 
   scenario 'user successfully updates email' do
     fill_in "Email", with: "new@email.com"
-    fill_in "Current password", with: "password"
+    fill_in "Current password", with: user.password
     click_button "Update"
     expect(page).to have_content("Your account has been updated successfully")
+  end
+
+  scenario 'user successfully updates password' do
+    fill_in "Password", with: "newpassword"
+    fill_in "Password confirmation", with: "newpassword"
+    fill_in "Current password", with: user.password
+    click_button "Update"
+    expect(page).to have_content("Your account has been updated successfully")
+  end
+
+  scenario 'user has mismatching new passwords' do
+    fill_in "Password", with: "newpassword"
+    fill_in "Password confirmation", with: "newpassword1"
+    fill_in "Current password", with: user.password
+    click_button "Update"
+    expect(page).to have_content("Password confirmation doesn't match")
+  end
+
+  scenario 'user fails to enter correct current password' do
+    fill_in "Current password", with: "notuserpassword"
+    click_button "Update"
+    expect(page).to have_content("Current password is invalid")
   end
 end
