@@ -1,6 +1,6 @@
 class  ResourcesController < ApplicationController
   # before_action :find_resource, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @resources = Resource.all
