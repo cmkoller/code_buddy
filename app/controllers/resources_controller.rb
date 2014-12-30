@@ -25,6 +25,19 @@ class  ResourcesController < ApplicationController
   def show
   end
 
+  def update
+    if @resource.update(resource_params)
+      flash[:notice] = "You've successfully updated a resource!"
+      redirect_to @resource
+    else
+      render 'edit'
+    end
+  end
+
+  def edit
+
+  end
+
   private
 
   def resource_params

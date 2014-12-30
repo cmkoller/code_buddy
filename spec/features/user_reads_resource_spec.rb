@@ -1,15 +1,13 @@
 require "rails_helper"
 
-feature "User Submits a Resource", %q(
+feature "User Reads a Resource", %q(
 As an authenticated user
-I want to submit a resource
-So that I can share my finding with other users
+I want to read a resource
+So that I can review my resources
 
 Acceptance Criteria
-[ ] Go to resources/new to fill out form
-[ ] User must enter title
-[ ] User must enter description
-[ ] User must enter url
+[ ] Go to resources/
+[ ] User must be able to view and click title
 
 ) do
 
@@ -23,7 +21,7 @@ Acceptance Criteria
       click_button "Log in"
     end
 
-    scenario 'user successfully submits a resource and reads resource from root_path' do
+    scenario 'user successfully clicks and reads resource from root_path' do
 
       visit new_resource_path
       fill_in 'Title', with: "Descriptive Title"
@@ -35,9 +33,12 @@ Acceptance Criteria
       expect(page).to have_content("Descriptive Title")
       expect(page).to have_content("this resource is very descriptive")
       expect(page).to have_content("http://www.google.com")
-  
-      click_link "Code Buddy"
+
+      visit root_path
+      click_link "Descriptive Title"
       expect(page).to have_content("Descriptive Title")
+      expect(page).to have_content("this resource is very descriptive")
+      expect(page).to have_content("http://www.google.com")
     end
   end
 
