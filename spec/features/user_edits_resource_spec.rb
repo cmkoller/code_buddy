@@ -14,7 +14,7 @@ Acceptance Criteria
 ) do
 
   context "authenticated user" do
-    let(:user){ FactoryGirl.create(:user) }
+    let(:user) { FactoryGirl.create(:user) }
 
     before(:each) do
       visit new_user_session_path
@@ -26,17 +26,17 @@ Acceptance Criteria
     scenario 'user successfully edits resource' do
 
       visit new_resource_path
-      fill_in 'Title', with: "Descriptive Title"
-      fill_in 'Description', with: "this resource is very descriptive"
-      fill_in 'Url', with: "http://www.google.com"
+      fill_in "Title", with: "Descriptive Title"
+      fill_in "Description", with: "this resource is very descriptive"
+      fill_in "Url", with: "http://www.google.com"
 
-      click_button 'Submit Resource'
+      click_button "Submit Resource"
       expect(page).to have_content("You've successfully submitted a resource!")
       expect(page).to have_content("Descriptive Title")
       expect(page).to have_content("this resource is very descriptive")
       expect(page).to have_content("http://www.google.com")
 
-      click_link 'Edit'
+      click_link "Edit"
       fill_in "Title", with: "New Better Title"
       fill_in "Description", with: "New Better Description"
       fill_in "Url", with: "www.NewBetterUrl.com"
