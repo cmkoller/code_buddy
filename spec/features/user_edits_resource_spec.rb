@@ -23,7 +23,7 @@ Acceptance Criteria
       click_button "Log in"
     end
 
-    scenario 'user successfully edits resource' do
+    scenario "user successfully edits resource" do
 
       visit new_resource_path
       fill_in "Title", with: "Descriptive Title"
