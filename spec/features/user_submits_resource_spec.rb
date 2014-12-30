@@ -23,7 +23,7 @@ Acceptance Criteria
       click_button "Log in"
     end
 
-    scenario 'user successfully submits a resource' do
+    scenario 'user successfully submits a resource and reads resource from root_path' do
 
       visit new_resource_path
       fill_in 'Title', with: "Descriptive Title"
@@ -32,6 +32,15 @@ Acceptance Criteria
 
       click_button 'Submit Resource'
       expect(page).to have_content("You've successfully submitted a resource!")
+      expect(page).to have_content("Descriptive Title")
+      expect(page).to have_content("this resource is very descriptive")
+      expect(page).to have_content("http://www.google.com")
+
+      visit root_path
+      click_link "Descriptive Title"
+      expect(page).to have_content("Descriptive Title")
+      expect(page).to have_content("this resource is very descriptive")
+      expect(page).to have_content("http://www.google.com")
     end
   end
 
