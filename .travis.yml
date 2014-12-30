@@ -1,0 +1,5 @@
+language: ruby
+rvm:
+  - 2.0.0
+before_scrip:
+  - psql -c ‘create database <db-name>_test;’ -U postgres
