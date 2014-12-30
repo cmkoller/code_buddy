@@ -12,7 +12,8 @@ Acceptance Criteria
 [ ] User can update url
 
 ) do
-    let(:resource) { FactoryGirl.create(:resource) }
+  let(:resource) { FactoryGirl.create(:resource) }
+
   context "authenticated user" do
     let(:user) { FactoryGirl.create(:user) }
 
@@ -23,8 +24,9 @@ Acceptance Criteria
       click_button "Log in"
     end
 
-    scenario "user successfully edits resource" do
-
+    scenario "author of resource successfully edits resource" do
+      resource.user_id = user.id
+      resource.save
       visit resource_path(resource)
       expect(page).to have_content(resource.title)
       expect(page).to have_content(resource.description)

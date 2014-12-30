@@ -9,5 +9,6 @@ FactoryGirl.define do
     title "Whatever title"
     description "Whatever description lalalala"
     url "http://www.whatever.com"
+    user_id 1
   end
 end

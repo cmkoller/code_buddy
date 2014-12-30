@@ -7,11 +7,11 @@ class  ResourcesController < ApplicationController
   end
 
   def new
-    @resource = Resource.new
+    @resource = current_user.resources.build
   end
 
   def create
-    @resource = Resource.new(resource_params)
+    @resource = current_user.resources.build(resource_params)
 
     if @resource.save
       flash[:notice] = "You've successfully submitted a resource!"
@@ -26,11 +26,16 @@ class  ResourcesController < ApplicationController
   end
 
   def update
-    if @resource.update(resource_params)
-      flash[:notice] = "You've successfully updated a resource!"
-      redirect_to @resource
+    if current_user.id == @resource.user_id
+      if @resource.update(resource_params)
+        flash[:notice] = "You've successfully updated a resource!"
+        redirect_to @resource
+      else
+        render "edit"
+      end
     else
-      render "edit"
+      redirect_to root_path
+      flash[:alert] = "You are not the owner of that resource"
     end
   end
 
