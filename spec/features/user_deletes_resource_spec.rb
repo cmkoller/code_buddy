@@ -10,6 +10,7 @@ Acceptance Criteria
 
 ) do
 
+    let(:resource) { FactoryGirl.create(:resource) }
   context "authenticated user" do
     let(:user) { FactoryGirl.create(:user) }
 
@@ -22,16 +23,10 @@ Acceptance Criteria
 
     scenario "user successfully deletes resource" do
 
-      visit new_resource_path
-      fill_in "Title", with: "Descriptive Title"
-      fill_in "Description", with: "this resource is very descriptive"
-      fill_in "Url", with: "http://www.google.com"
-
-      click_button "Submit Resource"
-      expect(page).to have_content("You've successfully submitted a resource!")
-      expect(page).to have_content("Descriptive Title")
-      expect(page).to have_content("this resource is very descriptive")
-      expect(page).to have_content("http://www.google.com")
+      visit resource_path(resource)
+      expect(page).to have_content(resource.title)
+      expect(page).to have_content(resource.description)
+      expect(page).to have_content(resource.url)
 
       click_link "Delete"
       expect(page).to have_content("You've successfully deleted a resource!")
@@ -40,8 +35,10 @@ Acceptance Criteria
   end
 
   context "unauthenticated user" do
-    scenario 'user tries to submit resource when not signed in' do
-      visit new_resource_path
+    scenario 'user tries to delete resource when not signed in' do
+      visit resource_path(resource)
+
+      click_link "Delete"
       expect(page).to have_content("You need to sign in or sign up before continuing.")
     end
   end

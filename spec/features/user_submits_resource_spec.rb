@@ -25,7 +25,8 @@ Acceptance Criteria
 
     scenario "user successfully submits a resource and reads resource from root_path" do
 
-      visit new_resource_path
+      visit root_path
+      click_link "Create New Resource"
       fill_in "Title", with: "Descriptive Title"
       fill_in "Description", with: "this resource is very descriptive"
       fill_in "Url", with: "http://www.google.com"
