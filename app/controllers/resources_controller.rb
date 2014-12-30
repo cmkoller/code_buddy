@@ -1,5 +1,5 @@
 class  ResourcesController < ApplicationController
-  # before_action :find_resource, only: [:show, :edit, :update, :destroy]
+  before_action :find_resource, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
@@ -15,11 +15,14 @@ class  ResourcesController < ApplicationController
 
     if @resource.save
       flash[:notice] = "You've successfully submitted a resource!"
-      redirect_to resources_path
+      redirect_to @resource
     else
-      flash[:notice] = "Fail"
+      flash[:alert] = "Fail"
       render 'new'
     end
+  end
+
+  def show
   end
 
   private
