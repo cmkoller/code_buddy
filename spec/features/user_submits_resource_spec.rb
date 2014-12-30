@@ -21,15 +21,14 @@ Acceptance Criteria
       fill_in "Email", with: user.email
       fill_in "Password", with: user.password
       click_button "Log in"
-      visit edit_user_registration_path
     end
 
     scenario 'user successfully submits a resource' do
 
       visit new_resource_path
-      fill_in 'Title', :with => "Descriptive Title"
-      fill_in 'Description', :with => "this resource is very descriptive"
-      fill_in 'Url', :with => "http://www.google.com"
+      fill_in 'Title', with: "Descriptive Title"
+      fill_in 'Description', with: "this resource is very descriptive"
+      fill_in 'Url', with: "http://www.google.com"
 
       click_button 'Submit Resource'
       expect(page).to have_content("You've successfully submitted a resource!")
