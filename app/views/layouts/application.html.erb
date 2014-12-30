@@ -25,6 +25,7 @@
         <!-- Right Nav Section -->
         <ul class="right">
           <% if user_signed_in? %>
+          <li><% binding.pry %>Picture: <%= current_user.avatar %></li>
           <li>Logged in as <strong><%= current_user.email %></strong>.</li>
           <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
           <li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
@@ -35,7 +36,6 @@
         </ul>
       </section>
     </nav>
-
 
     <div class="row">
       <div class="columns small-12">

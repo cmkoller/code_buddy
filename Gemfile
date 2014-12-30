@@ -13,6 +13,10 @@ gem 'turbolinks'
 gem 'spring',        group: :development
 gem 'foundation-rails'
 gem 'devise'
+gem 'carrierwave'
+gem 'fog'
+# gem 'mime-types'
+gem 'mini_magick'
 
 group :test, :development do
   gem 'pry-rails'
