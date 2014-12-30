@@ -47,10 +47,10 @@ Acceptance Criteria
     end
   end
 
-  # context "unauthenticated user" do
-  #   scenario 'user tries to submit resource when not signed in' do
-  #     visit new_resource_path
-  #     expect(page).to have_content("You need to sign in or sign up before continuing.")
-  #   end
-  # end
+  context "unauthenticated user" do
+    scenario 'user tries to submit resource when not signed in' do
+      visit new_resource_path
+      expect(page).to have_content("You need to sign in or sign up before continuing.")
+    end
+  end
 end
