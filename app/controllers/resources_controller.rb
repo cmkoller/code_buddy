@@ -30,7 +30,7 @@ class  ResourcesController < ApplicationController
       flash[:notice] = "You've successfully updated a resource!"
       redirect_to @resource
     else
-      render 'edit'
+      render "edit"
     end
   end
 
