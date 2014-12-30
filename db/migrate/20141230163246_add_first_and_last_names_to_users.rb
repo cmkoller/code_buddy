@@ -12,5 +12,6 @@ class AddFirstAndLastNamesToUsers < ActiveRecord::Migration
   def down
     remove_column :users, :first_name
     remove_column :users, :last_name
+    remove_column :users, :display_name
   end
 end
