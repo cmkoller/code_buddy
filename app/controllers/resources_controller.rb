@@ -38,6 +38,12 @@ class  ResourcesController < ApplicationController
 
   end
 
+  def destroy
+    @resource.destroy
+    flash[:notice] = "You've successfully deleted a resource!"
+    redirect_to root_path
+  end
+
   private
 
   def resource_params
