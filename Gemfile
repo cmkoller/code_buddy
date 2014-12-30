@@ -14,6 +14,10 @@ gem 'spring',        group: :development
 gem 'foundation-rails'
 gem 'devise'
 
+group :test do
+  gem 'coveralls', require: false
+end
+
 group :test, :development do
   gem 'pry-rails'
   gem 'rspec-rails'
