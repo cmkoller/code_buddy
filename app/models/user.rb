@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
 
   validates :display_name,
   presence: true,
-  length: {maximum: 50}
+  length: { maximum: 50 }
   validates :first_name,
-  length: {maximum: 50}
+  length: { maximum: 50 }
   validates :last_name,
-  length: {maximum: 50}
+  length: { maximum: 50 }
 end
