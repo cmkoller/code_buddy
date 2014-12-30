@@ -11,7 +11,7 @@ Acceptance Criteria
 ) do
 
   context "authenticated user" do
-    let(:user){ FactoryGirl.create(:user) }
+    let(:user) { FactoryGirl.create(:user) }
 
     before(:each) do
       visit new_user_session_path
