@@ -1,5 +1,5 @@
 language: ruby
 rvm:
   - 2.0.0
-before_scrip:
-  - psql -c ‘create database <db-name>_test;’ -U postgres
+before_script:
+  - psql -c ‘create database code_buddy_test;’ -U postgres
