@@ -12,11 +12,10 @@ Acceptance Criteria
 [ ] User can update url
 
 ) do
-  let(:resource) { FactoryGirl.create(:resource) }
 
+  let(:resource) { FactoryGirl.create(:resource) }
   context "authenticated user" do
     let(:user) { FactoryGirl.create(:user) }
-    # let(:user2) { FactoryGirl.create(:user) }
 
     before(:each) do
       visit new_user_session_path
