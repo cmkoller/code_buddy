@@ -18,7 +18,7 @@ class  ResourcesController < ApplicationController
       redirect_to @resource
     else
       flash[:alert] = "Fail"
-      render 'new'
+      render "new"
     end
   end
 
