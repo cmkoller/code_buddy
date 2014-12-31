@@ -1,5 +1,3 @@
 <% @resources.each do |resource| %>
-<%= resource.title %>
-<%= resource.description %>
-<%= resource.url %>
+  <h3><%= link_to resource.title, resource %></h3>
 <% end %>

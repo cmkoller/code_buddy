@@ -1,9 +1,4 @@
 FactoryGirl.define do
-  #
-  # sequence :email do |n|
-  #   "email#{n}@example.com"
-  # end
-
 
   factory :user do
     sequence(:email) { |n| "personemailllll#{n}@example.com" }
@@ -11,4 +6,10 @@ FactoryGirl.define do
     password "password"
   end
 
+  factory :resource do
+    title "Whatever title"
+    description "Whatever description lalalala"
+    url "http://www.whatever.com"
+    user
+  end
 end

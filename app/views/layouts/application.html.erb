@@ -25,12 +25,13 @@
         <!-- Right Nav Section -->
         <ul class="right">
           <% if user_signed_in? %>
-          <li><a href=""><strong><%= current_user.display_name %></strong></a></li>
-          <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
-          <li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
+            <li><a href=""><strong><%= current_user.display_name %></strong></a></li>
+            <li><%= link_to "Create New Resource", new_resource_path %></li>
+            <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
           <% else %>
-          <li><%= link_to "Sign up", new_user_registration_path  %></li>
-          <li><%= link_to "Login", new_user_session_path  %></li>
+            <li><%= link_to "Sign up", new_user_registration_path  %></li>
+            <li><%= link_to "Login", new_user_session_path  %></li>
           <% end %>
         </ul>
       </section>
