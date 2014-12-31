@@ -26,7 +26,7 @@ class  BuddiesController < ApplicationController
   end
 
   def update
-    @buddy = Buddy.find(params[:id])
+    @buddy = current_user.buddies.find(params[:id])
     if current_user.id == @buddy.user_id
       if @buddy.update(buddy_params)
         flash[:notice] = "You've successfully updated a buddy!"
@@ -41,11 +41,11 @@ class  BuddiesController < ApplicationController
   end
 
   def edit
-    @buddy = Buddy.find(params[:id])
+    @buddy = current_user.buddies.find(params[:id])
   end
 
   def destroy
-    @buddy = Buddy.find(params[:id])
+    @buddy = current_user.buddies.find(params[:id])
     @buddy.destroy
     flash[:notice] = "You've successfully deleted a buddy!"
     redirect_to root_path
@@ -60,4 +60,5 @@ class  BuddiesController < ApplicationController
   def find_buddy
     @buddy ||= Buddy.find(params[:id])
   end
+
 end
