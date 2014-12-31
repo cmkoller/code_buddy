@@ -17,8 +17,8 @@ Acceptance Criteria
     scenario "user successfully deletes resource" do
 
       visit new_user_session_path
-      fill_in "Email", with: resource.user.email
-      fill_in "Password", with: resource.user.password
+      fill_in "user[email]", with: resource.user.email
+      fill_in "user[password]", with: resource.user.password
       click_button "Log in"
       visit resource_path(resource)
 

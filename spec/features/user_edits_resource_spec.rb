@@ -19,8 +19,8 @@ Acceptance Criteria
     scenario "author of resource successfully edits resource" do
 
       visit new_user_session_path
-      fill_in "Email", with: resource.user.email
-      fill_in "Password", with: resource.user.password
+      fill_in "user[email]", with: resource.user.email
+      fill_in "user[password]", with: resource.user.password
       click_button "Log in"
       visit resource_path(resource)
 
@@ -37,8 +37,8 @@ Acceptance Criteria
     scenario "not the author of resource tries to edit resource" do
       user2 = FactoryGirl.create(:user)
       visit new_user_session_path
-      fill_in "Email", with: user2.email
-      fill_in "Password", with: user2.password
+      fill_in "user[email]", with: user2.email
+      fill_in "user[password]", with: user2.password
       click_button "Log in"
       visit resource_path(resource)
 
