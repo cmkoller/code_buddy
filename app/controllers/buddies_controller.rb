@@ -60,5 +60,4 @@ class  BuddiesController < ApplicationController
   def find_buddy
     @buddy ||= Buddy.find(params[:id])
   end
-
 end
