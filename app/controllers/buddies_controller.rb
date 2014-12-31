@@ -1,5 +1,4 @@
 class  BuddiesController < ApplicationController
-  before_action :find_buddy, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
@@ -22,10 +21,12 @@ class  BuddiesController < ApplicationController
     end
   end
 
-  # def show
-  # end
+  def show
+    @buddy = Buddy.find(params[:id])
+  end
 
   def update
+    @buddy = Buddy.find(params[:id])
     if current_user.id == @buddy.user_id
       if @buddy.update(buddy_params)
         flash[:notice] = "You've successfully updated a buddy!"
@@ -39,10 +40,12 @@ class  BuddiesController < ApplicationController
     end
   end
 
-  # def edit
-  # end
+  def edit
+    @buddy = Buddy.find(params[:id])
+  end
 
   def destroy
+    @buddy = Buddy.find(params[:id])
     @buddy.destroy
     flash[:notice] = "You've successfully deleted a buddy!"
     redirect_to root_path
