@@ -17,8 +17,8 @@ Acceptance Criteria
     scenario "user successfully deletes buddy" do
 
       visit new_user_session_path
-      fill_in "Email", with: buddy.user.email
-      fill_in "Password", with: buddy.user.password
+      fill_in "user[email]", with: buddy.user.email
+      fill_in "user[password]", with: buddy.user.password
       click_button "Log in"
       visit buddy_path(buddy)
 
