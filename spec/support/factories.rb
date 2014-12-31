@@ -6,7 +6,7 @@ FactoryGirl.define do
     password "password"
   end
 
-  factory :resource do
+  factory :buddy do
     title "Whatever title"
     description "Whatever description lalalala"
     url "http://www.whatever.com"
