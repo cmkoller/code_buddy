@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'buddies#index'
-  resources :buddies, only: [:index, :new, :create, :update, :destroy]
+  resources :buddies
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

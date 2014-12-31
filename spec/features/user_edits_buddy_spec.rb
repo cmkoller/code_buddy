@@ -41,13 +41,7 @@ Acceptance Criteria
       fill_in "Password", with: user2.password
       click_button "Log in"
 
-      visit edit_buddy_path(buddy)
-      fill_in "Title", with: "New Better Title"
-      fill_in "Description", with: "New Better Description"
-      fill_in "Url", with: "www.NewBetterUrl.com"
-
-      click_button "Submit Buddy"
-      expect(page).to have_content("You are not the owner of that buddy")
+      expect { visit edit_buddy_path(buddy) }.to raise_error(ActiveRecord::RecordNotFound)
 
     end
   end

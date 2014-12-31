@@ -22,7 +22,7 @@ class  BuddiesController < ApplicationController
   end
 
   def show
-    @buddy = current_user.buddies.find(params[:id])
+    @buddy = Buddy.find(params[:id])
   end
 
   def update
@@ -55,6 +55,10 @@ class  BuddiesController < ApplicationController
 
   def buddy_params
     params.require(:buddy).permit(:title, :description, :url)
+  end
+
+  def find_buddy
+    @buddy ||= Buddy.find(params[:id])
   end
 
 end
