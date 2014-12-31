@@ -1,0 +1,90 @@
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic|PT+Serif:400,700,400italic|Oswald:400,700|Quattrocento:400,700|Dancing+Script:400,700);
+
+body {
+  background-color: #0abfbc;
+  font-family: 'PT Sans';
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+// ==========================
+// NAV BAR
+// ==========================
+
+$top-bar-height: 65px;
+
+.top-bar {
+  &, .name {
+    height: $top-bar-height;
+  }
+
+  &, li a,
+  .top-bar-section li:not(.has-form) a:not(.button),
+  .name h1 a {
+    background-color: #fff;
+    color: #000;
+  }
+
+  .top-bar-section li:not(.has-form) a:not(.button),
+  .name h1 {
+    line-height: $top-bar-height;
+  }
+
+  .name h1 a {
+    font-family: 'Dancing Script';
+    font-weight: bold;
+    font-size: 32px;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+}
+
+
+// ==========================
+// FORMS
+// ==========================
+
+input[type="text"], input[type="password"],
+input[type="date"], input[type="datetime"],
+input[type="datetime-local"], input[type="month"],
+input[type="week"], input[type="email"],
+input[type="number"], input[type="search"],
+input[type="tel"], input[type="time"],
+input[type="url"], input[type="color"], textarea,
+input {
+  padding: 1.5rem 1em;
+  border: none;
+  box-shadow: none;
+  margin-bottom: .9em;
+  font-family: 'Quattrocento';
+}
+
+::-webkit-input-placeholder { color:#777; }
+::-moz-placeholder { color:#777; } /* firefox 19+ */
+:-ms-input-placeholder { color:#777; } /* ie */
+input:-moz-placeholder { color:#777; }
+
+// ==========================
+// SIGN UP FORM
+// ==========================
+
+.sign-up-form {
+  margin-top: 10%;
+
+  input[type=submit] {
+    width: 100%;
+    background-color: #fc354c;
+    box-shadow: 0px 1px 2px rgba(0,0,0,.4);
+  }
+
+  a {
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+  }
+}
