@@ -22,8 +22,8 @@ class  ResourcesController < ApplicationController
     end
   end
 
-  def show
-  end
+  # def show
+  # end
 
   def update
     if current_user.id == @resource.user_id
@@ -39,8 +39,8 @@ class  ResourcesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  # def edit
+  # end
 
   def destroy
     @resource.destroy
@@ -55,7 +55,7 @@ class  ResourcesController < ApplicationController
   end
 
   def find_resource
-    @resource = Resource.find(params[:id])
+    @resource ||= Resource.find(params[:id])
   end
 
 end

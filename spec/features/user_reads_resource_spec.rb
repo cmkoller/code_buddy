@@ -10,7 +10,7 @@ Acceptance Criteria
 [ ] User must be able to view and click title
 
 ) do
-    let(:resource) { FactoryGirl.create(:resource) }
+  let(:resource) { FactoryGirl.create(:resource) }
   context "authenticated user" do
     let(:user){ FactoryGirl.create(:user) }
 
@@ -21,7 +21,7 @@ Acceptance Criteria
       click_button "Log in"
     end
 
-    scenario 'user successfully clicks and reads resource from root_path' do
+    scenario "user successfully clicks and reads resource from root_path" do
       resource.save
       visit root_path
       click_link resource.title
