@@ -1,9 +1,0 @@
-<h3><%= @resource.title %></h3>
-<p><%= @resource.description %></p>
-<p><%= @resource.url %></p>
-<% if signed_in? %>
-  <% if current_user.id == @resource.user_id %>
-  <%= link_to "Edit", edit_resource_path %>
-  <%= link_to "Delete", resource_path(@resource), method: :delete %>
-  <% end %>
-<% end %>
