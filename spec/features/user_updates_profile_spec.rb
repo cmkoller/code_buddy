@@ -17,37 +17,37 @@ Acceptance Criteria
 
   before(:each) do
     visit new_user_session_path
-    fill_in "Email", with: user.email
-    fill_in "Password", with: user.password
+    fill_in "user[email]", with: user.email
+    fill_in "user[password]", with: user.password
     click_button "Log in"
     visit edit_user_registration_path
   end
 
   scenario 'user successfully updates email' do
-    fill_in "Email", with: "new@email.com"
-    fill_in "Current password", with: user.password
+    fill_in "user[email]", with: "new@email.com"
+    fill_in "user[current_password]", with: user.password
     click_button "Update"
     expect(page).to have_content("Your account has been updated successfully")
   end
 
   scenario 'user successfully updates password' do
-    fill_in "Password", with: "newpassword"
-    fill_in "Password confirmation", with: "newpassword"
-    fill_in "Current password", with: user.password
+    fill_in "user[password]", with: "newpassword"
+    fill_in "user[password_confirmation]", with: "newpassword"
+    fill_in "user[current_password]", with: user.password
     click_button "Update"
     expect(page).to have_content("Your account has been updated successfully")
   end
 
   scenario 'user has mismatching new passwords' do
-    fill_in "Password", with: "newpassword"
-    fill_in "Password confirmation", with: "newpassword1"
-    fill_in "Current password", with: user.password
+    fill_in "user[password]", with: "newpassword"
+    fill_in "user[password_confirmation]", with: "newpassword1"
+    fill_in "user[current_password]", with: user.password
     click_button "Update"
     expect(page).to have_content("Password confirmation doesn't match")
   end
 
   scenario 'user fails to enter correct current password' do
-    fill_in "Current password", with: "notuserpassword"
+    fill_in "user[current_password]", with: "notuserpassword"
     click_button "Update"
     expect(page).to have_content("Current password is invalid")
   end
