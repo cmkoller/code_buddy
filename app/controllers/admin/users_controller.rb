@@ -17,5 +17,13 @@ module Admin
       flash[:notice] = "User successfully deleted!"
       redirect_to admin_users_path
     end
+
+    def update
+      @user = User.find(params[:id])
+      @user.admin = true
+      @user.save
+      flash[:info] = "#{@user.display_name} is now an admin!"
+      redirect_to user_path(@user)
+    end
   end
 end

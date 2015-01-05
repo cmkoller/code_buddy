@@ -23,10 +23,10 @@ Acceptance Criteria
       click_button "Log in"
     end
 
-    scenario 'admin successfully makes another user into an admin' do
-      user.save
-      visit admin_users_path
-      expect(page).to have_content(user.display_name)
+    scenario "admin successfully makes another user into an admin" do
+      visit user_path(user)
+      click_button "Make Admin"
+      expect(page).to have_content("#{user.display_name} is now an admin!")
     end
 
     # scenario 'admin deletes a user' do

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'buddies#index'
   resources :buddies
   namespace :admin do
-    resources :users, only: [:index, :destroy]
+    resources :users, only: [:index, :destroy, :update]
   end
   resources :users, only: [:show]
 
