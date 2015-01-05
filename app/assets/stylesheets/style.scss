@@ -29,7 +29,8 @@ button, .button {
   }
 }
 
-.alert-box.success {
+.alert-box.success,
+.alert-box.notice {
   background-color: #9FF07B;
   border-color: #72A65B;
   color: #333;
