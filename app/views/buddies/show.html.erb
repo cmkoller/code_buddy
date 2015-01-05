@@ -5,7 +5,7 @@
   <% if current_user.id == @buddy.user_id %>
     <%= link_to "Edit", edit_buddy_path %>
   <% end %>
-  <% if current_user.id == @buddy.user_id  || current_user.is_admin?%>
+  <% if current_user.id == @buddy.user_id  || current_user.admin?%>
     <%= link_to "Delete", buddy_path(@buddy), method: :delete %>
   <% end %>
 <% end %>

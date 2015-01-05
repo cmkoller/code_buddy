@@ -46,13 +46,13 @@ class  BuddiesController < ApplicationController
 
   def destroy
     @buddy = Buddy.find(params[:id])
-    if current_user.nil? || (!current_user.is_admin? && current_user.id != @buddy.user_id)
-      flash[:notice] = "You are not authorized to do this."
-      redirect_to buddy_path(@buddy)
-    else
+    if current_user.admin? || current_user.id == @buddy.user_id
       @buddy.destroy
       flash[:notice] = "You've successfully deleted a buddy!"
       redirect_to root_path
+    else
+      flash[:notice] = "You are not authorized to do this."
+      redirect_to buddy_path(@buddy)
     end
   end
 

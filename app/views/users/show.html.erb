@@ -1,6 +1,6 @@
 <h3><%= @user.display_name %></h3>
 
-<% if current_user.is_admin? %>
+<% if current_user.admin? %>
   <%= button_to "Delete", admin_user_path(@user), method: :delete, class: "tiny button" %>
   <%= button_to "Make Admin", admin_user_path(@user), method: :patch, class: "tiny button" %>
 <% end %>
