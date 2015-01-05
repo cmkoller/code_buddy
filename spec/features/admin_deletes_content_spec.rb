@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "User Creates Account", %q(
+feature "Admin Deletes Content", %q(
 As an administrator of the Code Buddy Website
 I want to be able to delete users, code resources, and reviews
 So that I can get rid of inappropriate content and users.
