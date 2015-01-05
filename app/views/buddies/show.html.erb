@@ -3,7 +3,9 @@
 <p><%= @buddy.url %></p>
 <% if signed_in? %>
   <% if current_user.id == @buddy.user_id %>
-  <%= link_to "Edit", edit_buddy_path %>
-  <%= link_to "Delete", buddy_path(@buddy), method: :delete %>
+    <%= link_to "Edit", edit_buddy_path %>
+  <% end %>
+  <% if current_user.id == @buddy.user_id  || current_user.admin?%>
+    <%= link_to "Delete", buddy_path(@buddy), method: :delete %>
   <% end %>
 <% end %>

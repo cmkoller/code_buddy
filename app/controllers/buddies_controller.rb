@@ -45,10 +45,15 @@ class  BuddiesController < ApplicationController
   end
 
   def destroy
-    @buddy = current_user.buddies.find(params[:id])
-    @buddy.destroy
-    flash[:success] = "You've successfully deleted a buddy!"
-    redirect_to root_path
+    @buddy = Buddy.find(params[:id])
+    if current_user.admin? || current_user.id == @buddy.user_id
+      @buddy.destroy
+      flash[:success] = "You've successfully deleted a buddy!"
+      redirect_to root_path
+    else
+      flash[:alert] = "You are not authorized to do this."
+      redirect_to buddy_path(@buddy)
+    end
   end
 
   private
