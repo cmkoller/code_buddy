@@ -58,7 +58,8 @@ Acceptance Criteria
       user2.display_name = "Joe"
       user2.save
       visit user_path(user2)
-      expect(page).to have_no_content("Delete")
+      expect(page).to have_no_button("Delete")
+      save_and_open_page
       page.driver.submit :delete, admin_user_path(user2), {}
       expect(page).to have_content("You are not authorized to do this")
       expect(page).to have_content(user2.display_name)
