@@ -5,6 +5,13 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  def authorize!
+    if current_user.nil? or !current_user.is_admin?
+      flash[:notice] = "You are not authorized to do this."
+      redirect_to root_path
+    end
+  end
+
   protected
 
   def configure_permitted_parameters

@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
   length: { maximum: 50 }
   validates :last_name,
   length: { maximum: 50 }
+
+  def is_admin?
+    admin
+  end
 end
