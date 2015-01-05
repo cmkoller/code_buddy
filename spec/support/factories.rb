@@ -6,6 +6,13 @@ FactoryGirl.define do
     password "password"
   end
 
+  factory :admin, class: User do
+    sequence(:email) { |n| "personemailllll#{n}@example.com" }
+    display_name "Mr. Admin"
+    password "password"
+    admin true
+  end
+
   factory :buddy do
     title "Whatever title"
     description "Whatever description lalalala"
