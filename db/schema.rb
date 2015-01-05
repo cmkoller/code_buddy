@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20150105212705) do
     t.string   "display_name",                           null: false
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "avatar"
     t.boolean  "admin",                  default: false, null: false
   end
 

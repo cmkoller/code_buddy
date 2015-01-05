@@ -2,7 +2,7 @@ class  BuddiesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @buddies = Buddy.all
+    @buddies = Buddy.all.page(params[:page]).per(1)
   end
 
   def new

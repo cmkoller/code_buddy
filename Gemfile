@@ -13,6 +13,7 @@ gem 'turbolinks'
 gem 'spring',        group: :development
 gem 'foundation-rails'
 gem 'devise'
+gem 'kaminari'
 
 group :test do
   gem 'coveralls', require: false
