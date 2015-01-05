@@ -12,6 +12,7 @@ Acceptance Criteria
 
   let(:user) { FactoryGirl.create(:user) }
   let(:admin) { FactoryGirl.create(:admin) }
+  let(:buddy) { FactoryGirl.create(:buddy) }
 
   context "User is admin" do
 
@@ -36,6 +37,12 @@ Acceptance Criteria
       expect(page).to have_content("User successfully deleted")
       expect(page).to have_no_content(user.display_name)
     end
+
+    scenario 'admin deletes a buddy' do
+      visit buddy_path(buddy)
+      click_link "Delete"
+      expect(page).to have_content("You've successfully deleted a buddy!")
+    end
   end
 
   context "User is not admin" do
@@ -59,10 +66,16 @@ Acceptance Criteria
       user2.save
       visit user_path(user2)
       expect(page).to have_no_button("Delete")
-      save_and_open_page
       page.driver.submit :delete, admin_user_path(user2), {}
       expect(page).to have_content("You are not authorized to do this")
       expect(page).to have_content(user2.display_name)
+    end
+
+    scenario 'normal user cannot delete a buddy' do
+      visit buddy_path(buddy)
+      expect(page).to have_no_content("Delete")
+      page.driver.submit :delete, buddy_path(buddy), {}
+      expect(page).to have_content("You are not authorized to do this")
     end
 
   end
