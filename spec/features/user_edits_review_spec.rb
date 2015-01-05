@@ -47,13 +47,13 @@ Acceptance Criteria
       fill_in "review_comment", with: "This is our comment"
       select('horrible - 1', :from => 'review_rating')
       click_button "Submit Review"
-      
+
       click_link "Edit Review"
       fill_in "review_comment", with: ""
       select('horrible - 1', :from => 'review_rating')
 
       click_button "Submit Review"
-      expect(page).to have_content(["Comment can't be blank"])
+      expect(page).to have_content("Comment can't be blank")
     end
   end
 end

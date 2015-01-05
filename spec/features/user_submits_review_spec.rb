@@ -46,7 +46,7 @@ Acceptance Criteria
       select('horrible - 1', :from => 'review_rating')
 
       click_button "Submit Review"
-      expect(page).to have_content(["Comment can't be blank"])
+      expect(page).to have_content("Comment can't be blank")
     end
   end
 end
