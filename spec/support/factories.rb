@@ -4,13 +4,7 @@ FactoryGirl.define do
     sequence(:email) { |n| "personemailllll#{n}@example.com" }
     display_name "Bob"
     password "password"
-  end
-
-  factory :admin, class: User do
-    sequence(:email) { |n| "personemailllll#{n}@example.com" }
-    display_name "Mr. Admin"
-    password "password"
-    admin true
+    admin false
   end
 
   factory :buddy do

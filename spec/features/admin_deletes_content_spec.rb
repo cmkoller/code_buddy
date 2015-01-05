@@ -11,7 +11,7 @@ Acceptance Criteria
 ) do
 
   let(:user) { FactoryGirl.create(:user) }
-  let(:admin) { FactoryGirl.create(:admin) }
+  let(:admin) { FactoryGirl.create(:user, admin: true) }
   let(:buddy) { FactoryGirl.create(:buddy) }
 
   context "User is admin" do
