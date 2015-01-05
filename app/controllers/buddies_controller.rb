@@ -16,7 +16,7 @@ class  BuddiesController < ApplicationController
       flash[:notice] = "You've successfully submitted a buddy!"
       redirect_to @buddy
     else
-      flash[:alert] = "Fail"
+      flash[:alert] = @buddy.errors.full_messages
       render "new"
     end
   end
