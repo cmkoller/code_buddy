@@ -23,13 +23,13 @@ Acceptance Criteria
       click_button "Log in"
     end
 
-    scenario 'admin views all users' do
+    scenario "admin views all users" do
       user.save
       visit admin_users_path
       expect(page).to have_content(user.display_name)
     end
 
-    scenario 'admin deletes a user' do
+    scenario "admin deletes a user" do
       user.save
       visit admin_users_path
       click_link user.display_name
@@ -38,7 +38,7 @@ Acceptance Criteria
       expect(page).to have_no_content(user.display_name)
     end
 
-    scenario 'admin deletes a buddy' do
+    scenario "admin deletes a buddy" do
       visit buddy_path(buddy)
       click_link "Delete"
       expect(page).to have_content("You've successfully deleted a buddy!")
@@ -54,13 +54,13 @@ Acceptance Criteria
       click_button "Log in"
     end
 
-    scenario 'normal user cannot view list of users' do
+    scenario "normal user cannot view list of users" do
       visit admin_users_path
       expect(page).to have_content("You are not authorized to do this")
       expect(page).to have_no_content("Users")
     end
 
-    scenario 'normal user cannot delete a user' do
+    scenario "normal user cannot delete a user" do
       user2 = user
       user2.display_name = "Joe"
       user2.save
@@ -71,7 +71,7 @@ Acceptance Criteria
       expect(page).to have_content(user2.display_name)
     end
 
-    scenario 'normal user cannot delete a buddy' do
+    scenario "normal user cannot delete a buddy" do
       visit buddy_path(buddy)
       expect(page).to have_no_content("Delete")
       page.driver.submit :delete, buddy_path(buddy), {}
