@@ -29,7 +29,7 @@ Acceptance Criteria
       expect(page).to have_content(user.display_name)
     end
 
-    scenario 'admin deletes a user' do
+    scenario "admin deletes a user" do
       user.save
       visit admin_users_path
       click_link user.display_name
@@ -38,7 +38,7 @@ Acceptance Criteria
       expect(page).to have_no_content(user.display_name)
     end
 
-    scenario 'admin deletes a buddy' do
+    scenario "admin deletes a buddy" do
       visit buddy_path(buddy)
       click_link "Delete"
       expect(page).to have_content("You've successfully deleted a buddy!")
