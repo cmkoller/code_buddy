@@ -48,11 +48,20 @@ Acceptance Criteria
     end
 
     scenario 'normal user cannot view list of users' do
-      user.save
       visit admin_users_path
       expect(page).to have_content("You are not authorized to do this")
       expect(page).to have_no_content("Users")
+    end
 
+    scenario 'normal user cannot delete a user' do
+      user2 = user
+      user2.display_name = "Joe"
+      user2.save
+      visit user_path(user2)
+      expect(page).to have_no_content("Delete")
+      page.driver.submit :delete, admin_user_path(user2), {}
+      expect(page).to have_content("You are not authorized to do this")
+      expect(page).to have_content(user2.display_name)
     end
 
   end

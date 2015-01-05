@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   root 'buddies#index'
   resources :buddies
   namespace :admin do
-    resources :users, only: [:index, :show, :destroy]
+    resources :users, only: [:index, :destroy]
   end
+  resources :users, only: [:show]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
