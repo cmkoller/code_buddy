@@ -18,6 +18,10 @@ gem 'fog'
 # gem 'mime-types'
 gem 'mini_magick'
 
+group :test do
+  gem 'coveralls', require: false
+end
+
 group :test, :development do
   gem 'pry-rails'
   gem 'rspec-rails'
@@ -26,3 +30,7 @@ group :test, :development do
   gem 'launchy'
   gem 'quiet_assets'
 end
+
+gem 'rails_12factor', group: :production
+
+ruby "2.0.0"

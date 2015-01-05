@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'resources#index'
-  resources :resources
+  root 'buddies#index'
+  resources :buddies
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -13,11 +13,11 @@ Rails.application.routes.draw do
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  # Example buddy route (maps HTTP verbs to controller actions automatically):
+  #   buddies :products
 
-  # Example resource route with options:
-  #   resources :products do
+  # Example buddy route with options:
+  #   buddies :products do
   #     member do
   #       get 'short'
   #       post 'toggle'
@@ -28,31 +28,31 @@ Rails.application.routes.draw do
   #     end
   #   end
 
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
+  # Example buddy route with sub-buddies:
+  #   buddies :products do
+  #     buddies :comments, :sales
+  #     buddy :seller
   #   end
 
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
+  # Example buddy route with more complex sub-buddies:
+  #   buddies :products do
+  #     buddies :comments
+  #     buddies :sales do
   #       get 'recent', on: :collection
   #     end
   #   end
 
-  # Example resource route with concerns:
+  # Example buddy route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
   #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
+  #   buddies :posts, concerns: :toggleable
+  #   buddies :photos, concerns: :toggleable
 
-  # Example resource route within a namespace:
+  # Example buddy route within a namespace:
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController
   #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
+  #     buddies :products
   #   end
 end

@@ -6,7 +6,9 @@
 
     <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
 
-    <%= stylesheet_link_tag    "application" %>
+    <%= stylesheet_link_tag "application",
+      'https://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic|PT+Serif:400,700,400italic|Oswald:400,700|Quattrocento:400,700|Dancing+Script:400,700',
+      media: "all" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
   </head>
@@ -25,13 +27,13 @@
         <!-- Right Nav Section -->
         <ul class="right">
           <% if user_signed_in? %>
-          <li><%= current_user.avatar %></li>
-          <li>Logged in as <strong><%= current_user.email %></strong>.</li>
-          <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
-          <li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
+            <li><a href=""><strong><%= current_user.display_name %></strong></a></li>
+            <li><%= link_to "Create New Buddy", new_buddy_path %></li>
+            <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
           <% else %>
-          <li><%= link_to "Sign up", new_user_registration_path  %></li>
-          <li><%= link_to "Login", new_user_session_path  %></li>
+            <li><%= link_to "Sign up", new_user_registration_path  %></li>
+            <li><%= link_to "Login", new_user_session_path  %></li>
           <% end %>
         </ul>
       </section>

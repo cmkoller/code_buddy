@@ -1,7 +1,3 @@
-# As an authenticated user
-# I want to delete my account
-# So that my information is no longer retained by the app
-
 require "rails_helper"
 
 feature "User Deletes Account", %q(
@@ -19,8 +15,8 @@ Acceptance Criteria
 
   before(:each) do
     visit new_user_session_path
-    fill_in "Email", with: user.email
-    fill_in "Password", with: user.password
+    fill_in "user[email]", with: user.email
+    fill_in "user[password]", with: user.password
     click_button "Log in"
     visit edit_user_registration_path
   end
