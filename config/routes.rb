@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   resources :buddies do
     resources :reviews
   end
+  namespace :admin do
+    resources :users, only: [:index, :destroy, :update]
+  end
+  resources :users, only: [:show]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

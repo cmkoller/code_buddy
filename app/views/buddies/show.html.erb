@@ -1,16 +1,14 @@
-<div>
-  <h3><%= @buddy.title %></h3>
-  <p><%= @buddy.description %></p>
-  <p><%= @buddy.url %></p>
-</div>
-<div>
-  <% if signed_in? %>
-    <% if current_user.id == @buddy.user_id %>
-      <%= link_to "Edit", edit_buddy_path %>
-      <%= link_to "Delete", buddy_path(@buddy), method: :delete %>
-    <% end %>
+
+<h3><%= @buddy.title %></h3>
+<p><%= @buddy.description %></p>
+<p><%= @buddy.url %></p>
+<% if signed_in? %>
+  <% if current_user.id == @buddy.user_id %>
+    <%= link_to "Edit", edit_buddy_path %>
   <% end %>
-</div>
+  <% if current_user.id == @buddy.user_id  || current_user.admin?%>
+    <%= link_to "Delete", buddy_path(@buddy), method: :delete %>
+  <% end %>
 <div>
   <h5>Reviews:</h5>
 
