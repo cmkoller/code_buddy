@@ -17,6 +17,8 @@ Acceptance Criteria
   context "User is admin" do
 
     before(:each) do
+      admin.display_name = "Mr. Admin"
+      admin.save
       visit new_user_session_path
       fill_in "user[email]", with: admin.email
       fill_in "user[password]", with: admin.password
@@ -24,13 +26,13 @@ Acceptance Criteria
     end
 
     scenario "admin views all users" do
-      user.save
+      user = FactoryGirl.create(:user)
       visit admin_users_path
       expect(page).to have_content(user.display_name)
     end
 
     scenario "admin deletes a user" do
-      user.save
+      user = FactoryGirl.create(:user)
       visit admin_users_path
       click_link user.display_name
       click_button "Delete"
@@ -61,13 +63,14 @@ Acceptance Criteria
     end
 
     scenario "normal user cannot delete a user" do
-      user2 = user
+      user2 = FactoryGirl.create(:user)
       user2.display_name = "Joe"
       user2.save
       visit user_path(user2)
       expect(page).to have_no_button("Delete")
       page.driver.submit :delete, admin_user_path(user2), {}
       expect(page).to have_content("You are not authorized to do this")
+      visit user_path(user2)
       expect(page).to have_content(user2.display_name)
     end
 
