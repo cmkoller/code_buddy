@@ -43,7 +43,7 @@ Acceptance Criteria
     scenario "normal user cannot make another user into an admin" do
       visit user_path(user)
       expect(page).to have_no_content("Make Admin")
-      page.driver.submit :patch, admin_user_path(user), { admin: true }
+      page.driver.submit :patch, admin_user_path(user), admin: true
       expect(page).to have_content("You are not authorized to do this")
     end
   end
