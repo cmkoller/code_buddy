@@ -54,7 +54,7 @@ Acceptance Criteria
       click_button "Log in"
     end
 
-    scenario 'normal user cannot view list of users' do
+    scenario "normal user cannot view list of users" do
       visit admin_users_path
       expect(page).to have_content("You are not authorized to do this")
       expect(page).to have_no_content("Users")
