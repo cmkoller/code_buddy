@@ -13,7 +13,7 @@ class  BuddiesController < ApplicationController
     @buddy = current_user.buddies.build(buddy_params)
 
     if @buddy.save
-      flash[:notice] = "You've successfully submitted a buddy!"
+      flash[:success] = "You've successfully submitted a buddy!"
       redirect_to @buddy
     else
       flash[:alert] = "Fail"
@@ -29,7 +29,7 @@ class  BuddiesController < ApplicationController
     @buddy = current_user.buddies.find(params[:id])
     if current_user.id == @buddy.user_id
       if @buddy.update(buddy_params)
-        flash[:notice] = "You've successfully updated a buddy!"
+        flash[:success] = "You've successfully updated a buddy!"
         redirect_to @buddy
       else
         render "edit"
@@ -48,10 +48,10 @@ class  BuddiesController < ApplicationController
     @buddy = Buddy.find(params[:id])
     if current_user.admin? || current_user.id == @buddy.user_id
       @buddy.destroy
-      flash[:notice] = "You've successfully deleted a buddy!"
+      flash[:success] = "You've successfully deleted a buddy!"
       redirect_to root_path
     else
-      flash[:notice] = "You are not authorized to do this."
+      flash[:alert] = "You are not authorized to do this."
       redirect_to buddy_path(@buddy)
     end
   end
