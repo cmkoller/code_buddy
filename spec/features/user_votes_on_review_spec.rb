@@ -38,5 +38,17 @@ Acceptance Criteria
       click_button "No"
       expect(review.tally).to eq(-1)
     end
+
+    scenario "user can only upvote once per review" do
+      click_button "Yes"
+      click_button "Yes"
+      expect(review.tally).to eq(1)
+    end
+
+    scenario "user can only downvote once per review" do
+      click_button "No"
+      click_button "No"
+      expect(review.tally).to eq(-1)
+    end
   end
 end

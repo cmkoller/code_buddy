@@ -6,7 +6,6 @@ class VotesController < ApplicationController
     @vote.user_id = current_user.id
     @vote.review_id = @review.id
     unless @vote.save
-      flash[:alert] = @vote.errors.full_messages.join(".  ")
     end
     redirect_to buddy_path(@review.buddy)
   end

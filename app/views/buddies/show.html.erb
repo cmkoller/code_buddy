@@ -31,7 +31,7 @@
         <%= link_to "Edit Review", edit_buddy_review_path(@buddy, review) %>
         <%= link_to "Delete Review", buddy_review_path(@buddy, review), method: :delete %>
       <% end %>
-
+      <%= review.tally %>
       <%= form_for([@buddy, review, review.votes.build]) do |f| %>
         <%= f.hidden_field :vote_value, value: 1 %>
         <%= f.submit "Yes" %>
