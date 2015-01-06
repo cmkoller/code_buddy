@@ -60,9 +60,9 @@ ActiveRecord::Schema.define(version: 20150106182416) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "votes", force: true do |t|
-    t.integer "user_id",   null: false
-    t.integer "review_id", null: false
-    t.integer "vote",      null: false
+    t.integer "user_id",    null: false
+    t.integer "review_id",  null: false
+    t.integer "vote_value", null: false
   end
 
   add_index "votes", ["review_id"], name: "index_votes_on_review_id", using: :btree
