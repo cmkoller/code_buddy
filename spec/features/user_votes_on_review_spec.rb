@@ -27,10 +27,7 @@ Acceptance Criteria
       review = FactoryGirl.create(:review)
       visit buddy_path(review.buddy)
       click_button "Yes"
-
       expect(review.tally).to eq(1)
-
-
     end
   end
 end

@@ -5,11 +5,10 @@ class VotesController < ApplicationController
     @vote = @review.votes.build(vote_params)
     @vote.user_id = current_user.id
     @vote.review_id = @review.id
-      if @vote.save
-        redirect_to root_path
-      else
-        redirect_to root_path
-      end
+    unless @vote.save
+      flash[:alert] = @vote.errors.full_messages.join(".  ")
+    end
+    redirect_to buddy_path(@review.buddy)
   end
 
 
