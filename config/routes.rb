@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'buddies#index'
   resources :buddies do
-    resources :reviews
+    resources :reviews, only: [:create, :update, :destroy, :edit]
   end
   namespace :admin do
     resources :users, only: [:index, :destroy, :update]

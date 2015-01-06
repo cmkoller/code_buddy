@@ -1,8 +1,8 @@
 class  ReviewsController < ApplicationController
 
-  def new
-    @review = Review.new
-  end
+  # def new
+  #   @review = Review.new
+  # end
 
   def create
     @buddy = Buddy.find(params[:buddy_id])
@@ -13,8 +13,8 @@ class  ReviewsController < ApplicationController
       flash[:notice] = "You've successfully submitted a review!"
       redirect_to buddy_path(@buddy)
     else
-      flash[:alert] = @review.errors.full_messages
-      redirect_to buddy_path(@buddy)
+      flash[:alert] = @review.errors.full_messages.join(".  ")
+      render "buddies/show"
     end
   end
 
@@ -25,17 +25,12 @@ class  ReviewsController < ApplicationController
 
   def update
     @review = current_user.reviews.find(params[:id])
-    @buddy = Buddy.find(params[:buddy_id])
-    if current_user.id == @review.user_id
-      if @review.update(review_params)
-        flash[:notice] = "You've successfully updated your review!"
-        redirect_to @buddy
-      else
-        flash[:alert] = @review.errors.full_messages
-        redirect_to @buddy
-      end
+    @buddy = @review.buddy
+    if @review.update(review_params)
+      flash[:notice] = "You've successfully updated your review!"
+      redirect_to @buddy
     else
-      flash[:alert] = "You are not the owner of that review"
+      flash[:alert] = @review.errors.full_messages.join(".  ")
       redirect_to @buddy
     end
   end
@@ -51,7 +46,7 @@ class  ReviewsController < ApplicationController
 
   private
   def review_params
-    params.require(:review).permit(:comment, :rating, :user)
+    params.require(:review).permit(:comment, :rating)
   end
 
 end
