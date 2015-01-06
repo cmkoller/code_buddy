@@ -33,8 +33,8 @@
       <% end %>
 
 
-      <%= form_for([@review, @review.vote.build]) do |f| %>
-        <%= f.hidden_field :vote_values, 1 %>
+      <%= form_for([@buddy, review, review.votes.build]) do |f| %>
+        <%= f.hidden_field :vote_values, value: 1 %>
         <%= f.submit "Yes" %>
       <% end %>
 
