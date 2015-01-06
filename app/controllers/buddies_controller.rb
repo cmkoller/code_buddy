@@ -16,7 +16,7 @@ class  BuddiesController < ApplicationController
       flash[:success] = "You've successfully submitted a buddy!"
       redirect_to @buddy
     else
-      flash[:alert] = "Fail"
+      flash[:alert] = @buddy.errors.full_messages.join(".  ")
       render "new"
     end
   end
@@ -32,6 +32,7 @@ class  BuddiesController < ApplicationController
         flash[:success] = "You've successfully updated a buddy!"
         redirect_to @buddy
       else
+        flash[:alert] = @buddy.errors.full_messages.join(".  ")
         render "edit"
       end
     else
@@ -45,10 +46,15 @@ class  BuddiesController < ApplicationController
   end
 
   def destroy
-    @buddy = current_user.buddies.find(params[:id])
-    @buddy.destroy
-    flash[:success] = "You've successfully deleted a buddy!"
-    redirect_to root_path
+    @buddy = Buddy.find(params[:id])
+    if current_user.admin? || current_user.id == @buddy.user_id
+      @buddy.destroy
+      flash[:success] = "You've successfully deleted a buddy!"
+      redirect_to root_path
+    else
+      flash[:alert] = "You are not authorized to do this."
+      redirect_to buddy_path(@buddy)
+    end
   end
 
   private
