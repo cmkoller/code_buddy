@@ -14,20 +14,29 @@ Acceptance Criteria
 ) do
 
   let(:buddy) { FactoryGirl.create(:buddy) }
+  let(:review) { FactoryGirl.create(:review) }
+
   context "authenticated user" do
 
-    scenario "user successfully votes on review" do
-
+    before(:each) do
       visit new_user_session_path
       fill_in "user[email]", with: buddy.user.email
       fill_in "user[password]", with: buddy.user.password
 
       click_button "Log in"
-
-      review = FactoryGirl.create(:review)
       visit buddy_path(review.buddy)
+    end
+
+    scenario "user successfully upvotes on review" do
+
       click_button "Yes"
       expect(review.tally).to eq(1)
+    end
+
+    scenario "user successfully downvotes on review" do
+
+      click_button "No"
+      expect(review.tally).to eq(-1)
     end
   end
 end
