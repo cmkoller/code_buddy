@@ -50,5 +50,20 @@ Acceptance Criteria
       click_button "No"
       expect(review.tally).to eq(-1)
     end
+
+    scenario "user can change their vote" do
+      click_button "Yes"
+      click_button "No"
+      expect(review.tally).to eq(-1)
+    end
+  end
+
+  context "unaunthenticated user" do
+
+    scenario "user successfully upvotes on review" do
+
+      visit buddy_path(review.buddy)
+      expect(page).to have_no_button("Yes")
+    end
   end
 end

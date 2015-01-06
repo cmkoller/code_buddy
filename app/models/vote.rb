@@ -4,8 +4,8 @@ class Vote < ActiveRecord::Base
 
   validates :vote_value,
             inclusion: { in: [1, -1] },
-            presence: true,
-            uniqueness: {scope: :review, message: ": You can't upvote twice"}
+            presence: true#,
+            # uniqueness: {scope: :review, message: ": You can't upvote twice"}
   validates :user, presence: true
   validates :review, presence: true
 end
