@@ -58,6 +58,12 @@ $top-bar-height: 65px;
     color: black;
   }
 
+  .logo {
+    margin-top: -5px;
+    margin-left: 20px;
+  }
+
+
   .top-bar-section li:not(.has-form) a:not(.button),
   .name h1 {
     line-height: $top-bar-height;
@@ -72,7 +78,15 @@ $top-bar-height: 65px;
       text-decoration: none;
     }
   }
+  .namesmall h1 a {
+    font-family: 'Dancing Script';
+    font-weight: bold;
+    font-size: 40px;
 
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 
