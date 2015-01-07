@@ -5,6 +5,6 @@ class AddVotes < ActiveRecord::Migration
       t.integer :review_id, null: false
       t.integer :vote_value, null: false
     end
-      add_index :votes, :review_id
+    add_index :votes, [:review_id, :user_id], unique: true
   end
 end

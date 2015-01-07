@@ -12,46 +12,45 @@
 <% end %>
 
 <div>
-  <h5>Reviews:</h5>
-
-  <% if signed_in? %>
-    <% @buddy.reviews.each do |review| %>
-      <% @user = User.all %>
-      <div class="rating">
-        <h6>Rating:</h6>
-        <% review.rating.times do %>
-          <div class="star"></div>
+    <h5>Reviews:</h5>
+    <% if @buddy.reviews = [] %>
+    <p>Be the first to review this buddy!</p>
+    <% elsif signed_in? %>
+      <% @buddy.reviews.each do |review| %>
+        <% @user = User.all %>
+        <div class="rating">
+          <h6>Rating:</h6>
+          <% review.rating.times do %>
+            <div class="star"></div>
+          <% end %>
+          <% (5 - review.rating).times do %>
+            <div class="star empty"></div>
+          <% end %>
+        </div>
+        <p><%= @user.find(review.user_id).display_name %>: <%= review.comment %></p>
+        <% if current_user.id == review.user_id %>
+          <%= link_to "Edit Review", edit_review_path(review) %>
+          <%= link_to "Delete Review", review_path(review), method: :delete %>
         <% end %>
-        <% (5 - review.rating).times do %>
-          <div class="star empty"></div>
+
+        <%= form_for([review, review.votes.build]) do |f| %>
+          <%= f.hidden_field :vote_value, value: 1 %>
+          <%= f.submit "Yes" %>
         <% end %>
-      </div>
-      <p><%= @user.find(review.user_id).display_name %>: <%= review.comment %></p>
-      <% if current_user.id == review.user_id %>
-        <%= link_to "Edit Review", edit_review_path(review) %>
-        <%= link_to "Delete Review", review_path(review), method: :delete %>
-      <% end %>
+        <%= form_for([review, review.votes.build]) do |f| %>
+          <%= f.hidden_field :vote_value, value: -1 %>
+          <%= f.submit "No" %>
+        <% end %>
 
-      <%= form_for([review, review.votes.build]) do |f| %>
-        <%= f.hidden_field :vote_value, value: 1 %>
-        <%= f.submit "Yes" %>
       <% end %>
-      <%= form_for([review, review.votes.build]) do |f| %>
-        <%= f.hidden_field :vote_value, value: -1 %>
-        <%= f.submit "No" %>
+    <% elsif signed_in? == false %>
+      <% @buddy.reviews.each do |review| %>
+      <p>
+        <% @user = User.all %>
+        <%= @user.find(review.user_id).display_name %>: <%= review.comment %>
+      </p>
       <% end %>
-
     <% end %>
-  <% elsif %>
-    <% @buddy.reviews.each do |review| %>
-    <p>
-      <% @user = User.all %>
-      <%= @user.find(review.user_id).display_name %>: <%= review.comment %>
-    </p>
-
-    <% end %>
-  <% end %>
-
 
   <% if signed_in? %>
     <%= form_for([@buddy, @buddy.reviews.build]) do |f| %>
@@ -66,4 +65,6 @@
     </p>
     <% end %>
   <% end %>
+
+
 </div>

@@ -16,12 +16,11 @@ class  ReviewsController < ApplicationController
   end
 
   def edit
-    @review = Review.find(params[:id])
-    @buddy = @review.buddy_id
+    @review = current_user.reviews.find(params[:id])
   end
 
   def update
-    @review = Review.find(params[:id])
+    @review = current_user.reviews.find(params[:id])
     @buddy = @review.buddy
     if @review.update(review_params)
       flash[:notice] = "You've successfully updated your review!"
@@ -33,7 +32,7 @@ class  ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = Review.find(params[:id])
+    @review = current_user.reviews.find(params[:id])
     @buddy = @review.buddy
     @review.destroy
     flash[:notice] = "You've successfully deleted a review!"

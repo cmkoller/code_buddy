@@ -9,12 +9,10 @@ class VotesController < ApplicationController
     redirect_to buddy_path(review.buddy)
   end
 
-
   private
 
-    def vote_params
-      params.require(:vote).permit(:vote_value)
-    end
-
+  def vote_params
+    params.require(:vote).permit(:vote_value)
+  end
 
 end
