@@ -13,9 +13,7 @@
 
 <div>
     <h5>Reviews:</h5>
-    <% if @buddy.reviews = [] %>
-    <p>Be the first to review this buddy!</p>
-    <% elsif signed_in? %>
+    <% if signed_in? %>
       <% @buddy.reviews.each do |review| %>
         <% @user = User.all %>
         <div class="rating">
