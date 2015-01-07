@@ -16,12 +16,12 @@ class  ReviewsController < ApplicationController
   end
 
   def edit
-    @review = current_user.reviews.find(params[:id])
-    @buddy = Buddy.find(params[:buddy_id])
+    @review = Review.find(params[:id])
+    @buddy = @review.buddy_id
   end
 
   def update
-    @review = current_user.reviews.find(params[:id])
+    @review = Review.find(params[:id])
     @buddy = @review.buddy
     if @review.update(review_params)
       flash[:notice] = "You've successfully updated your review!"
@@ -33,11 +33,12 @@ class  ReviewsController < ApplicationController
   end
 
   def destroy
-    @buddy = Buddy.find(params[:buddy_id])
-    @review = current_user.reviews.find(params[:id])
+    @review = Review.find(params[:id])
+    @buddy = @review.buddy
+    binding.pry
     @review.destroy
     flash[:notice] = "You've successfully deleted a review!"
-    redirect_to @buddy
+    redirect_to buddy_path(@buddy)
   end
 
 
