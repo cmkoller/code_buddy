@@ -57,14 +57,21 @@ $top-bar-height: 65px;
     line-height: $top-bar-height;
   }
 
+  .logo {
+    margin-top: -5px;
+    margin-left: 20px;
+  }
+
   .top-bar-section li:not(.has-form) a:not(.button) {
     transition: background-color .2s;
+
     &:hover {
       background-color: #eee;
     }
   }
 
-  .name h1 a {
+  .name h1 a,
+  .namesmall h1 a {
     font-family: 'Dancing Script';
     font-weight: bold;
     font-size: 40px;
@@ -83,7 +90,6 @@ $top-bar-height: 65px;
       text-align: center;
     }
   }
-
 }
 
 // ==========================
