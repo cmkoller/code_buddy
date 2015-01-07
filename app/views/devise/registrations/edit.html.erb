@@ -7,7 +7,7 @@
 
     <div class="field">
       <%= f.label :avatar %>
-      <%= image_tag @user.avatar.medium if @user.avatar? %>
+      <%= image_tag @user.avatar.medium %>
       <%= f.file_field :avatar %>
       <%= f.hidden_field :avatar_cache %>
     </div>
