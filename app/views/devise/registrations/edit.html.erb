@@ -6,6 +6,13 @@
     <%= devise_error_messages! %>
 
     <div class="field">
+      <%= f.label :avatar %>
+      <%= image_tag @user.avatar.medium if @user.avatar? %>
+      <%= f.file_field :avatar %>
+      <%= f.hidden_field :avatar_cache %>
+    </div>
+
+    <div class="field">
       <%= f.label :display_name %>
       <%= f.text_field :display_name, autofocus: true %>
     </div>

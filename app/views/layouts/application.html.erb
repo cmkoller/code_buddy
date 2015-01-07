@@ -27,9 +27,17 @@
         <!-- Right Nav Section -->
         <ul class="right">
           <% if user_signed_in? %>
-            <li><a href=""><strong><%= current_user.display_name %></strong></a></li>
+            <li><%= link_to "View Buddies", buddies_path %></li>
             <li><%= link_to "Create New Buddy", new_buddy_path %></li>
-            <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+            <li class="has-dropdown">
+              <a href="#">
+                <%= image_tag current_user.avatar.thumb, class: "profile round tiny" %>
+                <strong><%= current_user.display_name %></strong>
+              </a>
+              <ul class="dropdown">
+                <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+              </ul>
+            </li>
             <li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
           <% else %>
             <li><%= link_to "Sign up", new_user_registration_path  %></li>
