@@ -28,7 +28,7 @@ Acceptance Criteria
       click_link "Edit"
       fill_in "Title", with: "New Better Title"
       fill_in "Description", with: "New Better Description"
-      fill_in "Url", with: "www.NewBetterUrl.com"
+      fill_in "Url", with: "http://www.NewBetterUrl.com"
 
       click_button "Submit Buddy"
       expect(page).to have_content("You've successfully updated a buddy!")

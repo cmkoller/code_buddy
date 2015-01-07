@@ -35,7 +35,6 @@ class  ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @buddy = @review.buddy
-    binding.pry
     @review.destroy
     flash[:notice] = "You've successfully deleted a review!"
     redirect_to buddy_path(@buddy)
