@@ -1,8 +1,5 @@
 class  ReviewsController < ApplicationController
-
-  # def new
-  #   @review = Review.new
-  # end
+  before_action :authenticate_user!
 
   def create
     @buddy = Buddy.find(params[:buddy_id])
