@@ -13,6 +13,7 @@
 
 <div>
     <h5>Reviews:</h5>
+<% if @buddy.reviews != [] %>
     <% if signed_in? %>
       <% @buddy.reviews.each do |review| %>
         <% @user = User.all %>
@@ -41,7 +42,7 @@
         <% end %>
 
       <% end %>
-    <% elsif signed_in? == false %>
+    <% else %>
       <% @buddy.reviews.each do |review| %>
       <p>
         <% @user = User.all %>
@@ -49,7 +50,9 @@
       </p>
       <% end %>
     <% end %>
-
+<% else %>
+  <p>Be the first to review this buddy!</p>
+<% end %>
   <% if signed_in? %>
     <%= form_for([@buddy, @buddy.reviews.build]) do |f| %>
     <p>
