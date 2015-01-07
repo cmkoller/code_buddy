@@ -15,8 +15,8 @@ gem 'foundation-rails'
 gem 'devise'
 gem 'carrierwave'
 gem 'fog'
-# gem 'mime-types'
 gem 'mini_magick'
+gem 'kaminari'
 
 group :test do
   gem 'coveralls', require: false

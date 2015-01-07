@@ -5,7 +5,13 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'buddies#index'
-  resources :buddies
+  resources :buddies do
+    resources :reviews, only: [:create, :update, :destroy, :edit]
+  end
+  namespace :admin do
+    resources :users, only: [:index, :destroy, :update]
+  end
+  resources :users, only: [:show]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

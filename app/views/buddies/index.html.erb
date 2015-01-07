@@ -1,3 +1,5 @@
+<%= paginate @buddies %>
+
 <% @buddies.each do |buddy| %>
   <h3><%= link_to buddy.title, buddy %></h3>
 <% end %>
