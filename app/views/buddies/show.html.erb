@@ -15,46 +15,55 @@
 <div class="row">
     <h5>Reviews:</h5>
     <% if @buddy.reviews != [] %>
-        <% if signed_in? %>
-          <% @buddy.reviews.each do |review| %>
-            <div class="panel">
-              <% @user = User.all %>
-              <div class="rating">
-                <h6>Rating:</h6>
-                <% review.rating.times do %>
-                  <div class="star"></div>
-                <% end %>
-                <% (5 - review.rating).times do %>
-                  <div class="star empty"></div>
-                <% end %>
-              </div>
-              <p><%= @user.find(review.user_id).display_name %>: <%= review.comment %></p>
-              <% if current_user.id == review.user_id %>
-                <%= link_to "Edit Review", edit_review_path(review) %>
-                <%= link_to "Delete Review", review_path(review), method: :delete %>
-              <% end %>
-
+      <!-- START PRINTING REVIEWS -->
+      <% @buddy.reviews.each do |review| %>
+        <div class="panel review">
+          <% @user = User.all %>
+          <!-- Display User  -->
+          <div class="row user">
+            <%= image_tag review.user.avatar.thumb, class: "profile tiny" %>
+            <h5><%= review.user.display_name %></h5>
+          </div>
+          <!-- Display Body -->
+          <div class="row comment">
+            <p><%= review.comment %></p>
+          </div>
+          <!-- Display Edit/Delete Buttons -->
+          <% if current_user.id == review.user_id %>
+            <%= link_to "Edit Review", edit_review_path(review) %>
+            <%= link_to "Delete Review", review_path(review), method: :delete %>
+          <% end %>
+          <!-- Display Stars -->
+          <div class="row rating">
+            <% review.rating.times do %>
+            <div class="star"></div>
+            <% end %>
+            <% (5 - review.rating).times do %>
+            <div class="star empty"></div>
+            <% end %>
+          </div>
+          <!-- Display Votes -->
+          <% if signed_in? %>
+            <div class="row voting">
+              <h6>Was this review helpful?</h6>
               <%= form_for([review, review.votes.build]) do |f| %>
                 <%= f.hidden_field :vote_value, value: 1 %>
-                <%= f.submit "Yes" %>
+                <%= f.submit "Yes", class: "button tiny" %>
               <% end %>
               <%= form_for([review, review.votes.build]) do |f| %>
                 <%= f.hidden_field :vote_value, value: -1 %>
-                <%= f.submit "No" %>
+                <%= f.submit "No", class: "button tiny" %>
               <% end %>
             </div>
-        <% end %>
-      <% else %>
-        <% @buddy.reviews.each do |review| %>
-        <p>
-          <% @user = User.all %>
-          <%= @user.find(review.user_id).display_name %>: <%= review.comment %>
-        </p>
-        <% end %>
+          <% end %>
+        </div>
       <% end %>
+      <!-- END PRINTING REVIEWS -->
     <% else %>
       <p>Be the first to review this buddy!</p>
     <% end %>
+
+    <!-- Make New Review -->
     <% if signed_in? %>
       <%= form_for([@buddy, @buddy.reviews.build]) do |f| %>
       <p>

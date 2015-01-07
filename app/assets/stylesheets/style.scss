@@ -152,6 +152,29 @@ input:-moz-placeholder { color:#777; }
 // REVIEW
 // ==========================
 
-.star {
-  background-image: ;
+.review {
+  .star {
+    background-image: url("star.png");
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+
+    &.empty {
+      background-image: url("empty_star.png");
+    }
+  }
+
+  .user {
+    h5, img {
+      display: inline;
+      vertical-align: bottom;
+    }
+  }
+
+  .voting {
+    h6, form {
+      display: inline-block;
+      margin-right: 15px;
+    }
+  }
 }
