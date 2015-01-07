@@ -97,13 +97,23 @@ $top-bar-height: 65px;
     }
   }
 
+// ==========================
+// BUDDY DISPLAY
+// ==========================
+
+.buddy {
+  padding-top: 20px;
+}
 
 // ==========================
 // FORMS
 // ==========================
 
-button, .button {
+button, .button,
+a.button, a.button:hover {
   background-color: $button_color;
+  color: white;
+  text-decoration: none;
 
   &:hover, &:focus {
     background-color: darken($button_color, 17%);
@@ -152,7 +162,12 @@ input:-moz-placeholder { color:#777; }
 // REVIEW
 // ==========================
 
+
 .review {
+  p {
+    margin: 1.25rem 0;
+  }
+
   .star {
     background-image: url("star.png");
     width: 20px;
@@ -167,14 +182,26 @@ input:-moz-placeholder { color:#777; }
   .user {
     h5, img {
       display: inline;
-      vertical-align: bottom;
+      vertical-align: middle;
     }
   }
 
-  .voting {
-    h6, form {
-      display: inline-block;
-      margin-right: 15px;
+  .rating {
+    p {
+      margin: 0;
+    }
+
+    h6, form input {
+      vertical-align: baseline;
+    }
+
+    .voting {
+      h6, form {
+        display: inline-block;
+        margin-right: 15px;
+      }
     }
   }
+
+
 }

@@ -1,7 +1,7 @@
-<div class="row">
+<div class="row buddy">
   <h2><%= @buddy.title %></h2>
   <p><%= @buddy.description %></p>
-  <p><%= @buddy.url %></p>
+  <p><%= link_to @buddy.url, @buddy.url, target: "_blank" %></p>
   <% if signed_in? %>
     <% if current_user.id == @buddy.user_id %>
       <%= link_to "Edit", edit_buddy_path %>
@@ -10,71 +10,84 @@
       <%= link_to "Delete", buddy_path(@buddy), method: :delete %>
     <% end %>
   <% end %>
+  <hr />
 </div>
 
-<div class="row">
-    <h5>Reviews:</h5>
-    <% if @buddy.reviews != [] %>
-      <!-- START PRINTING REVIEWS -->
-      <% @buddy.reviews.each do |review| %>
-        <div class="panel review">
-          <% @user = User.all %>
-          <!-- Display User  -->
-          <div class="row user">
-            <%= image_tag review.user.avatar.thumb, class: "profile tiny" %>
-            <h5><%= review.user.display_name %></h5>
-          </div>
-          <!-- Display Body -->
-          <div class="row comment">
-            <p><%= review.comment %></p>
-          </div>
-          <!-- Display Edit/Delete Buttons -->
-          <% if current_user.id == review.user_id %>
-            <%= link_to "Edit Review", edit_review_path(review) %>
-            <%= link_to "Delete Review", review_path(review), method: :delete %>
-          <% end %>
-          <!-- Display Stars -->
-          <div class="row rating">
-            <% review.rating.times do %>
-            <div class="star"></div>
-            <% end %>
-            <% (5 - review.rating).times do %>
-            <div class="star empty"></div>
-            <% end %>
-          </div>
-          <!-- Display Votes -->
-          <% if signed_in? %>
-            <div class="row voting">
-              <h6>Was this review helpful?</h6>
-              <%= form_for([review, review.votes.build]) do |f| %>
-                <%= f.hidden_field :vote_value, value: 1 %>
-                <%= f.submit "Yes", class: "button tiny" %>
-              <% end %>
-              <%= form_for([review, review.votes.build]) do |f| %>
-                <%= f.hidden_field :vote_value, value: -1 %>
-                <%= f.submit "No", class: "button tiny" %>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-      <!-- END PRINTING REVIEWS -->
-    <% else %>
-      <p>Be the first to review this buddy!</p>
-    <% end %>
 
-    <!-- Make New Review -->
-    <% if signed_in? %>
-      <%= form_for([@buddy, @buddy.reviews.build]) do |f| %>
+<!-- Make New Review -->
+<% if signed_in? %>
+  <div class="">
+    <h3>Write a Review</h3>
+    <%= form_for([@buddy, @buddy.reviews.build]) do |f| %>
       <p>
         <%= f.label :comment, "Your Review:" %>
         <%= f.text_area :comment %>
       </p>
       <%= f.label :rating, "Your Rating:" %>
       <%= f.select :rating, [['horrible - 1', 1], ['poor - 2', 2], ['mediocre - 3', 3], ['good - 4', 4], ['great - 5', 5]] %>
-      <p>
-        <%= f.submit 'Submit Review'%>
-      </p>
+      <p><%= f.submit 'Submit Review', class: "button" %></p>
+    <% end %>
+  </div>
+<% end %>
+
+
+<div class="row">
+  <hr />
+  <h3>Reviews:</h3>
+
+  <% if @buddy.reviews != [] %>
+    <!-- START PRINTING REVIEWS -->
+    <% @buddy.reviews.each do |review| %>
+      <% if review.id %>
+        <div class="panel review clearfix">
+          <div class="column">
+            <!-- Display User  -->
+            <div class="row user">
+              <%= image_tag review.user.avatar.thumb, class: "profile tiny" %>
+              <h5><%= review.user.display_name %></h5>
+            </div>
+            <!-- Display Body -->
+            <div class="row comment">
+              <p><%= review.comment %></p>
+            </div>
+            <!-- Display Edit/Delete Buttons -->
+            <% if current_user.id == review.user_id %>
+              <%= link_to "Edit Review", edit_review_path(review), class: "button tiny" %>
+              <%= link_to "Delete Review", review_path(review), method: :delete, class: "button tiny" %>
+            <% end %>
+            <hr />
+            <!-- Display Stars -->
+            <div class="row rating clearfix">
+              <div class="columns small-6">
+                <% review.rating.times do %>
+                <div class="star"></div>
+                <% end %>
+                <% (5 - review.rating).times do %>
+                <div class="star empty"></div>
+                <% end %>
+                <p><small><%= review.tally %> people found this review helpful.</small></p>
+              </div>
+            <!-- Display Votes -->
+              <% if signed_in? %>
+                <div class="columns small-6 voting right">
+                  <h6>Was this review helpful?</h6>
+                  <%= form_for([review, review.votes.build]) do |f| %>
+                    <%= f.hidden_field :vote_value, value: 1 %>
+                    <%= f.submit "Yes", class: "button tiny" %>
+                  <% end %>
+                  <%= form_for([review, review.votes.build]) do |f| %>
+                    <%= f.hidden_field :vote_value, value: -1 %>
+                    <%= f.submit "No", class: "button tiny" %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
       <% end %>
     <% end %>
+    <!-- END PRINTING REVIEWS -->
+  <% else %>
+    <p>Be the first to review this buddy!</p>
+  <% end %>
 </div>
