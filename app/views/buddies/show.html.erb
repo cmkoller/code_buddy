@@ -58,7 +58,7 @@
             <hr />
             <!-- Display Stars -->
             <div class="row rating clearfix">
-              <div class="columns small-6">
+              <div class="columns small-12 medium-6">
                 <% review.rating.times do %>
                 <div class="star"></div>
                 <% end %>
@@ -69,7 +69,7 @@
               </div>
             <!-- Display Votes -->
               <% if signed_in? %>
-                <div class="columns small-6 voting right">
+                <div class="columns small-12 medium-6 voting right">
                   <h6>Was this review helpful?</h6>
                   <%= form_for([review, review.votes.build]) do |f| %>
                     <%= f.hidden_field :vote_value, value: 1 %>

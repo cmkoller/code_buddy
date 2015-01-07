@@ -28,6 +28,8 @@ button, .button {
 }
 
 .wrapper {
+  padding: 30px;
+
   a, a:hover {
     color: black;
   }
@@ -49,9 +51,9 @@ $top-bar-height: 65px;
 .top-bar {
 
   .top-bar-section li:not(.has-form) a:not(.button),
-  &, li a,
-  .name h1 a {
-    background-color: white;
+  &, li a, .name h1 a,
+  &.expanded .title-area {
+    background: white;
     color: black;
     height: $top-bar-height;
     line-height: $top-bar-height;
@@ -63,10 +65,10 @@ $top-bar-height: 65px;
   }
 
   .top-bar-section li:not(.has-form) a:not(.button) {
-    transition: background-color .2s;
+    transition: background .2s;
 
     &:hover {
-      background-color: #eee;
+      background: #eee;
     }
   }
 
@@ -90,6 +92,10 @@ $top-bar-height: 65px;
       text-align: center;
     }
   }
+}
+
+.top-bar .toggle-topbar.menu-icon a {
+  color: #000;
 }
 
 // ==========================
@@ -204,7 +210,7 @@ input:-moz-placeholder { color:#777; }
     .voting {
       h6, form {
         display: inline-block;
-        margin-right: 15px;
+        margin-right: 8px;
       }
     }
   }
