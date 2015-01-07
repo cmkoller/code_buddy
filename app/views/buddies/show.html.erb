@@ -28,8 +28,8 @@
       </div>
       <p><%= @user.find(review.user_id).display_name %>: <%= review.comment %></p>
       <% if current_user.id == review.user_id %>
-        <%= link_to "Edit Review", edit_buddy_review_path(@buddy, review) %>
-        <%= link_to "Delete Review", buddy_review_path(@buddy, review), method: :delete %>
+        <%= link_to "Edit Review", edit_review_path(review) %>
+        <%= link_to "Delete Review", review_path(review), method: :delete %>
       <% end %>
 
       <%= form_for([review, review.votes.build]) do |f| %>
