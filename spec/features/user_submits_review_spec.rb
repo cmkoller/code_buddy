@@ -24,6 +24,7 @@ Acceptance Criteria
     end
 
     scenario "user successfully submits a review on a buddy" do
+      # ActionMailer::Base.notifications = []
 
       visit buddy_path(buddy)
 
@@ -47,6 +48,9 @@ Acceptance Criteria
 
       click_button "Submit Review"
       expect(page).to have_content("Comment can't be blank")
+
+      expect(ActionMailer::Base.notifications).to eq(1)
+      last_email = ActionMailer.base.notifications.last
     end
   end
 end

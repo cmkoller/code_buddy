@@ -11,6 +11,7 @@ class  ReviewsController < ApplicationController
     @review.user_id = current_user.id
     if @review.save
       flash[:notice] = "You've successfully submitted a review!"
+      ReviewAlert.notification(@review).deliver
       redirect_to buddy_path(@buddy)
     else
       flash[:alert] = @review.errors.full_messages.join(".  ")
