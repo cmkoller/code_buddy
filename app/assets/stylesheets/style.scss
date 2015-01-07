@@ -47,15 +47,14 @@ button, .button {
 $top-bar-height: 65px;
 
 .top-bar {
-  &, .name {
-    height: $top-bar-height;
-  }
 
-  &, li a,
   .top-bar-section li:not(.has-form) a:not(.button),
+  &, li a,
   .name h1 a {
     background-color: white;
     color: black;
+    height: $top-bar-height;
+    line-height: $top-bar-height;
   }
 
   .logo {
@@ -63,21 +62,15 @@ $top-bar-height: 65px;
     margin-left: 20px;
   }
 
-
-  .top-bar-section li:not(.has-form) a:not(.button),
-  .name h1 {
-    line-height: $top-bar-height;
-  }
-
-  .name h1 a {
-    font-family: 'Dancing Script';
-    font-weight: bold;
-    font-size: 40px;
+  .top-bar-section li:not(.has-form) a:not(.button) {
+    transition: background-color .2s;
 
     &:hover {
-      text-decoration: none;
+      background-color: #eee;
     }
   }
+
+  .name h1 a,
   .namesmall h1 a {
     font-family: 'Dancing Script';
     font-weight: bold;
@@ -87,7 +80,28 @@ $top-bar-height: 65px;
       text-decoration: none;
     }
   }
+
+  .top-bar-section .has-dropdown {
+    & > a:after {
+      border-color: black transparent transparent;
+      margin-top: 5px;
+    }
+    ul {
+      text-align: center;
+    }
+  }
 }
+
+// ==========================
+// PROFILE PHOTOS
+// ==========================
+
+  img.profile {
+    &.tiny {
+      border-radius: 50px;
+      margin-right: 4px;
+    }
+  }
 
 
 // ==========================
