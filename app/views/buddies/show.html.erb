@@ -13,7 +13,7 @@
 
 <div class="review">
     <h5>Reviews:</h5>
-    <% if @buddy.reviews != [] %>
+    <% if @buddy.reviews.empty? %>
       <% if signed_in? %>
         <% @buddy.reviews.each do |review| %>
           <% @user = User.all %>
