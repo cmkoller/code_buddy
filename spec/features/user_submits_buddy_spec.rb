@@ -37,7 +37,7 @@ Acceptance Criteria
       expect(page).to have_content("this buddy is very descriptive")
       expect(page).to have_content("http://www.google.com")
 
-      click_link "Code Buddy"
+      visit root_path
       expect(page).to have_content("Descriptive Title")
     end
   end

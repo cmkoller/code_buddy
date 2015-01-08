@@ -1,0 +1,17 @@
+
+<!-- Make New Review -->
+<% if signed_in? %>
+  <h3>Write a Review</h3>
+  <%= form_for([@buddy, @buddy.reviews.build]) do |f| %>
+    <p>
+      <%= f.label :comment, "Your Review:" %>
+      <%= f.text_area :comment %>
+    </p>
+    <%= f.label :rating, "Your Rating:" %>
+    <%= f.select :rating, [['horrible - 1', 1], ['poor - 2', 2], ['mediocre - 3', 3], ['good - 4', 4], ['great - 5', 5]] %>
+    <p><%= f.submit 'Submit Review', class: "button" %></p>
+  <% end %>
+<% end %>
+
+
+
