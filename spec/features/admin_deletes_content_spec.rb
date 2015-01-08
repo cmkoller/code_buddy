@@ -37,13 +37,21 @@ Acceptance Criteria
       click_link user.display_name
       click_button "Delete"
       expect(page).to have_content("User successfully deleted")
-      expect(page).to have_no_content(user.display_name)
+      expect(page).to_not have_content(user.display_name)
     end
 
     scenario "admin deletes a buddy" do
       visit buddy_path(buddy)
-      click_link "Delete"
+      click_link "delete-buddy"
       expect(page).to have_content("You've successfully deleted a buddy!")
+      expect(page).to_not have_content(buddy.title)
+    end
+
+    scenario "admin deletes a review" do
+      FactoryGirl.create(:review, buddy: buddy)
+      visit buddy_path(buddy)
+      click_link "Delete Review"
+      expect(page).to have_content("You've successfully deleted a review!")
     end
   end
 
@@ -75,6 +83,14 @@ Acceptance Criteria
     end
 
     scenario "normal user cannot delete a buddy" do
+      visit buddy_path(buddy)
+      expect(page).to have_no_content("Delete")
+      page.driver.submit :delete, buddy_path(buddy), {}
+      expect(page).to have_content("You are not authorized to do this")
+    end
+
+    scenario "normal user cannot delete a review" do
+      FactoryGirl.create(:review, buddy: buddy)
       visit buddy_path(buddy)
       expect(page).to have_no_content("Delete")
       page.driver.submit :delete, buddy_path(buddy), {}

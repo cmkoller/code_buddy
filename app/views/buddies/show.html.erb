@@ -7,11 +7,11 @@
     <%= link_to "Edit", edit_buddy_path %>
   <% end %>
   <% if current_user.id == @buddy.user_id  || current_user.admin?%>
-    <%= link_to "Delete", buddy_path(@buddy), method: :delete %>
+    <%= link_to "Delete", buddy_path(@buddy), method: :delete, id: "delete-buddy" %>
   <% end %>
 <% end %>
 
-<div>
+<div class="review">
     <h5>Reviews:</h5>
     <% if @buddy.reviews != [] %>
       <% if signed_in? %>
@@ -29,7 +29,9 @@
           <p><%= @user.find(review.user_id).display_name %>: <%= review.comment %></p>
           <% if current_user.id == review.user_id %>
             <%= link_to "Edit Review", edit_review_path(review) %>
-            <%= link_to "Delete Review", review_path(review), method: :delete %>
+          <% end %>
+          <% if current_user.id == review.user_id || current_user.admin? %>
+            <%= link_to "Delete Review", review_path(review), method: :delete, id: "delete-review" %>
           <% end %>
 
           <%= form_for([review, review.votes.build]) do |f| %>
