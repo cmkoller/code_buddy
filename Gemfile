@@ -29,6 +29,8 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'launchy'
   gem 'quiet_assets'
+  gem 'email_spec'
+  gem 'mailcatcher'
   gem 'dotenv-rails'
 end
 
