@@ -10,28 +10,22 @@ Acceptance Criteria
 [ ] User must delete review
 ) do
 
-  let(:buddy) { FactoryGirl.create(:buddy) }
-
   context "authenticated user" do
-    let(:user){ FactoryGirl.create(:user) }
 
     before(:each) do
+      @user = FactoryGirl.create(:user)
+      @buddy = FactoryGirl.create(:buddy)
+
       visit new_user_session_path
-      fill_in "user[email]", with: user.email
-      fill_in "user[password]", with: user.password
+      fill_in "user[email]", with: @user.email
+      fill_in "user[password]", with: @user.password
       click_button "Log in"
     end
 
     scenario "user successfully deletes a review on a buddy" do
-
-      visit buddy_path(buddy)
-
-      fill_in "review_comment", with: "This is our comment"
-      select('horrible - 1', :from => 'review_rating')
-      click_button "Submit Review"
-
+      FactoryGirl.create(:review, buddy: @buddy, user: @user)
+      visit buddy_path(@buddy)
       click_link "Delete Review"
-
       expect(page).to have_content("You've successfully deleted a review!")
     end
   end
