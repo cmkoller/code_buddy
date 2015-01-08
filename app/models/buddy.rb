@@ -7,10 +7,8 @@ class Buddy < ActiveRecord::Base
   validates_format_of :url, :with => URI::regexp(%w(http https)), presence: true
 
   def reviewed(review)
-    if save
-      ReviewAlert.notification(review).deliver
-      return true
-    end
+    ReviewAlert.notification(review).deliver
+    return true
   end
 
 end
