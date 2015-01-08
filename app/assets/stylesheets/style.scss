@@ -99,6 +99,20 @@ $top-bar-height: 65px;
 }
 
 // ==========================
+// BUDDIES INDEX PAGE
+// ==========================
+
+// SEARCH BAR
+// ----------------
+
+.search {
+  input, input[type="text"] {
+    padding: 0.5rem 1em;
+  }
+}
+
+
+// ==========================
 // PROFILE PHOTOS
 // ==========================
 
@@ -145,6 +159,10 @@ input {
   box-shadow: none;
   margin-bottom: .9em;
   font-family: 'Quattrocento';
+}
+
+textarea {
+  padding: .75rem 1em;
 }
 
 ::-webkit-input-placeholder { color:#777; }
