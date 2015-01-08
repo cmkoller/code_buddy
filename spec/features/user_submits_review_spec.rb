@@ -27,8 +27,8 @@ Acceptance Criteria
       ActionMailer::Base.deliveries = []
 
       visit buddy_path(@buddy)
-
-      fill_in "review_comment", with: "This is our comment"
+      review_comment = "This is our comment"
+      fill_in "review_comment", with: review_comment
       select('horrible - 1', :from => 'review_rating')
 
       click_button "Submit Review"
@@ -42,10 +42,8 @@ Acceptance Criteria
       last_email = ActionMailer::Base.deliveries.last
 
       expect(last_email).to have_subject("New Review Posted")
-      # binding.pry
       expect(last_email).to deliver_to(@user.email)
-      # expect(last_email).to deliver_to(test_site.user.email)
-
+      expect(last_email).to have_body_text(@buddy.title)
     end
 
     scenario "user unsuccessfully submits a review on a buddy" do

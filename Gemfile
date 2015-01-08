@@ -27,6 +27,7 @@ group :test, :development do
   gem 'launchy'
   gem 'quiet_assets'
   gem 'email_spec'
+  gem 'mailcatcher'
 end
 
 gem 'rails_12factor', group: :production
