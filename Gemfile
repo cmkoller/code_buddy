@@ -26,6 +26,7 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'launchy'
   gem 'quiet_assets'
+  gem 'email_spec'
 end
 
 gem 'rails_12factor', group: :production

@@ -9,6 +9,7 @@ class ReviewAlert < ActionMailer::Base
   def notification(review)
     @greeting = "There was a review posted on your Code Buddy, #{review.buddy.title}!"
 
-    mail to: "#{review.buddy.user.email}"
+    mail to: "#{review.buddy.user.email}",
+        subject: "New Review Posted"
   end
 end

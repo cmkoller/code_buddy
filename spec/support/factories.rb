@@ -13,4 +13,11 @@ FactoryGirl.define do
     url "http://www.whatever.com"
     user
   end
+
+  factory :review do
+    comment "This review was awesome!"
+    rating 1
+    user
+    buddy
+  end
 end
