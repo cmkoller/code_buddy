@@ -14,9 +14,6 @@ describe ReviewAlert do
     review = FactoryGirl.create(:review, buddy: buddy)
     buddy.reviewed(review)
     expect(ActionMailer::Base.deliveries.size).to eql(1)
-
-    # prev_mail_count = ActionMailer::Base.deliveries.count
-    # expect(ActionMailer::Base.deliveries.count).to eql(prev_mail_count + 1)
   end
 
   # it "posts an invalid review" do
