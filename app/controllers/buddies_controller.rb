@@ -2,7 +2,12 @@ class  BuddiesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @buddies = Buddy.all.page(params[:page]).per(10)
+    if params[:query]
+      @buddies = Buddy.search(params[:query])
+    else
+      @buddies = Buddy.all
+    end
+    @buddies = @buddies.page(params[:page]).per(10)
   end
 
   def new

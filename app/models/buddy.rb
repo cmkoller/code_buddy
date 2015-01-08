@@ -11,4 +11,7 @@ class Buddy < ActiveRecord::Base
     return true
   end
 
+  def self.search(query)
+    where("title ILIKE ?", "%#{query}%")
+  end
 end

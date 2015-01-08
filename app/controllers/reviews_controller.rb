@@ -1,8 +1,5 @@
 class  ReviewsController < ApplicationController
-
-  # def new
-  #   @review = Review.new
-  # end
+  before_action :authenticate_user!
 
   def create
     @buddy = Buddy.find(params[:buddy_id])
@@ -21,7 +18,6 @@ class  ReviewsController < ApplicationController
 
   def edit
     @review = current_user.reviews.find(params[:id])
-    @buddy = Buddy.find(params[:buddy_id])
   end
 
   def update
@@ -37,11 +33,15 @@ class  ReviewsController < ApplicationController
   end
 
   def destroy
-    @buddy = Buddy.find(params[:buddy_id])
-    @review = current_user.reviews.find(params[:id])
-    @review.destroy
-    flash[:notice] = "You've successfully deleted a review!"
-    redirect_to @buddy
+    @review = Review.find(params[:id])
+    @buddy = @review.buddy
+    if current_user.admin? || current_user.id == @review.user_id
+      @review.destroy
+      flash[:notice] = "You've successfully deleted a review!"
+    else
+      flash[:alert] = "You are not authorized to do this."
+    end
+    redirect_to buddy_path(@buddy)
   end
 
 
