@@ -1,5 +1,9 @@
-<%= paginate @buddies %>
+<%= form_tag buddies_path, method: :get %>
+<%= text_field_tag :query %>
+<%= submit_tag "Search" %>
 
 <% @buddies.each do |buddy| %>
   <h3><%= link_to buddy.title, buddy %></h3>
 <% end %>
+
+<%= paginate @buddies %>
