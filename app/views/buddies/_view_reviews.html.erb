@@ -1,5 +1,5 @@
 <% if !@reviews.empty? %>
-    <!-- START PRINTING REVIEWS -->
+  <!-- START PRINTING REVIEWS -->
     <% @reviews.each do |review| %>
       <% if review.id %>
         <div class="panel review clearfix">
@@ -13,16 +13,7 @@
             <div class="row comment">
               <p><%= review.comment %></p>
             </div>
-            <!-- Display Edit/Delete Buttons -->
-            <% if signed_in? %>
-              <% if current_user.id == review.user_id %>
-                <%= link_to "Edit Review", edit_review_path(review), class: "button tiny" %>
-              <% end %>
-              <% if current_user.id == review.user_id || current_user.admin? %>
-                <%= link_to "Delete Review", review_path(review), method: :delete,
-                    class: "button tiny", id: "delete-review" %>
-              <% end %>
-            <% end %>
+            <%= render partial: "edit_delete_buttons_for_reviews", locals: {review: review} %>
             <hr />
             <%= render partial: "star_votes", locals: {review: review} %>
             </div>
@@ -30,7 +21,7 @@
         </div>
       <% end %>
     <% end %>
-    <!-- END PRINTING REVIEWS -->
+  <!-- END PRINTING REVIEWS -->
 <% else %>
     <p>Be the first to review this buddy!</p>
 <% end %>
