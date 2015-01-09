@@ -28,7 +28,7 @@ class  BuddiesController < ApplicationController
 
   def show
     @buddy = Buddy.find(params[:id])
-    @reviews = @buddy.reviews.order(created_at: :desc).page(params[:page]).per(1)
+    @reviews = @buddy.reviews.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def update
