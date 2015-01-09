@@ -6,6 +6,11 @@ class Buddy < ActiveRecord::Base
   validates :description, presence: true
   validates_format_of :url, :with => URI::regexp(%w(http https)), presence: true
 
+  def reviewed(review)
+    ReviewAlert.notification(review).deliver
+    return true
+  end
+
   def self.search(query)
     where("title ILIKE ?", "%#{query}%")
   end

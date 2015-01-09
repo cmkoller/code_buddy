@@ -8,6 +8,7 @@ class  ReviewsController < ApplicationController
     @review.user_id = current_user.id
     if @review.save
       flash[:notice] = "You've successfully submitted a review!"
+      @buddy.reviewed(@review)
       redirect_to buddy_path(@buddy)
     else
       flash[:alert] = @review.errors.full_messages.join(".  ")
@@ -32,10 +33,14 @@ class  ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = current_user.reviews.find(params[:id])
+    @review = Review.find(params[:id])
     @buddy = @review.buddy
-    @review.destroy
-    flash[:notice] = "You've successfully deleted a review!"
+    if current_user.admin? || current_user.id == @review.user_id
+      @review.destroy
+      flash[:notice] = "You've successfully deleted a review!"
+    else
+      flash[:alert] = "You are not authorized to do this."
+    end
     redirect_to buddy_path(@buddy)
   end
 

@@ -1,4 +1,4 @@
-<% if @reviews != [] %>
+<% if !@reviews.empty? %>
     <!-- START PRINTING REVIEWS -->
     <% @reviews.each do |review| %>
       <% if review.id %>
@@ -17,7 +17,10 @@
             <% if signed_in? %>
               <% if current_user.id == review.user_id %>
                 <%= link_to "Edit Review", edit_review_path(review), class: "button tiny" %>
-                <%= link_to "Delete Review", review_path(review), method: :delete, class: "button tiny" %>
+              <% end %>
+              <% if current_user.id == review.user_id || current_user.admin? %>
+                <%= link_to "Delete Review", review_path(review), method: :delete,
+                    class: "button tiny", id: "delete-review" %>
               <% end %>
             <% end %>
             <hr />

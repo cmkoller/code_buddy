@@ -7,7 +7,7 @@
       <%= link_to "Edit", edit_buddy_path %>
     <% end %>
     <% if current_user.id == @buddy.user_id  || current_user.admin?%>
-      <%= link_to "Delete", buddy_path(@buddy), method: :delete %>
+      <%= link_to "Delete", buddy_path(@buddy), method: :delete, id: "delete-buddy" %>
     <% end %>
   <% end %>
   <hr />
@@ -15,7 +15,7 @@
 
 <%= render "create_reviews_form" %>
 
-<div class="row">
+<div class="row reviews">
   <hr />
   <h3>Reviews:</h3>
   <%= render "view_reviews" %>
