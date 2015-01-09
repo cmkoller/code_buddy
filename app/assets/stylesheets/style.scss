@@ -199,13 +199,13 @@ input:-moz-placeholder { color:#777; }
   }
 
   .star {
-    background-image: image-url("star.png");
+    background-image: asset-url("star.png", image);
     width: 20px;
     height: 20px;
     display: inline-block;
 
     &.empty {
-      background-image: image-url("empty_star.png");
+      background-image: asset-url("empty_star.png", image);
     }
   }
 
