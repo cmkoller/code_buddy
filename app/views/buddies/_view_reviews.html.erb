@@ -24,34 +24,7 @@
               <% end %>
             <% end %>
             <hr />
-            <!-- Display Stars -->
-            <div class="row rating clearfix">
-              <div class="columns small-12 medium-6">
-                <% review.rating.times do %>
-                <div class="star"></div>
-                <% end %>
-                <% (5 - review.rating).times do %>
-                <div class="star empty"></div>
-                <% end %>
-                <p><small><%= review.tally %> people found this review helpful.</small></p>
-              </div>
-            <!-- Display Votes -->
-              <% if signed_in? %>
-                <div class="columns small-12 medium-6 voting right">
-                  <h6>Was this review helpful?</h6>
-                  <%= form_for([review, review.votes.build]) do |f| %>
-                    <%= f.hidden_field :vote_value, value: 1 %>
-                    <%= f.submit "Yes", class: "button tiny" %>
-                  <% end %>
-                  <%= form_for([review, review.votes.build]) do |f| %>
-                    <%= f.hidden_field :vote_value, value: -1 %>
-                    <%= f.submit "No", class: "button tiny" %>
-                  <% end %>
-                </div>
-                <div>
-                  <%= paginate @reviews %>
-                </div>
-              <% end %>
+            <%= render partial: "star_votes", locals: {review: review} %>
             </div>
           </div>
         </div>
