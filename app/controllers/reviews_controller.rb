@@ -12,7 +12,7 @@ class  ReviewsController < ApplicationController
       redirect_to buddy_path(@buddy)
     else
       flash[:alert] = @review.errors.full_messages.join(".  ")
-      render "buddies/show"
+      redirect_to buddy_path(@buddy)
     end
   end
 

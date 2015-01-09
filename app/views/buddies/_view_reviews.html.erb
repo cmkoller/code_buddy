@@ -1,0 +1,27 @@
+<% if !@reviews.empty? %>
+  <!-- START PRINTING REVIEWS -->
+    <% @reviews.each do |review| %>
+      <% if review.id %>
+        <div class="panel review clearfix">
+          <div class="column">
+            <!-- Display User  -->
+            <div class="row user">
+              <%= image_tag review.user.avatar.thumb, class: "profile tiny" %>
+              <h5><%= review.user.display_name %></h5>
+            </div>
+            <!-- Display Body -->
+            <div class="row comment">
+              <p><%= review.comment %></p>
+            </div>
+            <%= render partial: "edit_delete_buttons_for_reviews", locals: {review: review} %>
+            <hr />
+            <%= render partial: "star_votes", locals: {review: review} %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <!-- END PRINTING REVIEWS -->
+<% else %>
+    <p>Be the first to review this buddy!</p>
+<% end %>
