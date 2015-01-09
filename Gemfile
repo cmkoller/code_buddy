@@ -11,12 +11,13 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'turbolinks'
 gem 'spring',        group: :development
-gem 'foundation-rails'
+gem 'foundation-rails', '5.4.5'
 gem 'devise'
 gem 'carrierwave'
 gem 'fog'
 gem 'mini_magick'
 gem 'kaminari'
+gem 'dotenv-rails'
 
 group :test do
   gem 'coveralls', require: false
@@ -31,7 +32,6 @@ group :test, :development do
   gem 'quiet_assets'
   gem 'email_spec'
   gem 'mailcatcher'
-  gem 'dotenv-rails'
 end
 
 gem 'rails_12factor', group: :production
