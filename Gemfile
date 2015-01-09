@@ -13,6 +13,9 @@ gem 'turbolinks'
 gem 'spring',        group: :development
 gem 'foundation-rails'
 gem 'devise'
+gem 'carrierwave'
+gem 'fog'
+gem 'mini_magick'
 gem 'kaminari'
 
 group :test do
@@ -28,6 +31,7 @@ group :test, :development do
   gem 'quiet_assets'
   gem 'email_spec'
   gem 'mailcatcher'
+  gem 'dotenv-rails'
 end
 
 gem 'rails_12factor', group: :production

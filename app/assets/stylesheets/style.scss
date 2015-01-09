@@ -28,6 +28,8 @@ button, .button {
 }
 
 .wrapper {
+  padding: 30px;
+
   a, a:hover {
     color: black;
   }
@@ -47,23 +49,31 @@ button, .button {
 $top-bar-height: 65px;
 
 .top-bar {
-  &, .name {
-    height: $top-bar-height;
-  }
 
-  &, li a,
   .top-bar-section li:not(.has-form) a:not(.button),
-  .name h1 a {
-    background-color: white;
+  &, li a, .name h1 a,
+  &.expanded .title-area {
+    background: white;
     color: black;
-  }
-
-  .top-bar-section li:not(.has-form) a:not(.button),
-  .name h1 {
+    height: $top-bar-height;
     line-height: $top-bar-height;
   }
 
-  .name h1 a {
+  .logo {
+    margin-top: -5px;
+    margin-left: 20px;
+  }
+
+  .top-bar-section li:not(.has-form) a:not(.button) {
+    transition: background .2s;
+
+    &:hover {
+      background: #eee;
+    }
+  }
+
+  .name h1 a,
+  .namesmall h1 a {
     font-family: 'Dancing Script';
     font-weight: bold;
     font-size: 40px;
@@ -73,15 +83,63 @@ $top-bar-height: 65px;
     }
   }
 
+  .top-bar-section .has-dropdown {
+    & > a:after {
+      border-color: black transparent transparent;
+      margin-top: 5px;
+    }
+    ul {
+      text-align: center;
+    }
+  }
 }
 
+.top-bar .toggle-topbar.menu-icon a {
+  color: #000;
+}
+
+// ==========================
+// BUDDIES INDEX PAGE
+// ==========================
+
+// SEARCH BAR
+// ----------------
+
+.search {
+  input, input[type="text"] {
+    padding: 0.5rem 1em;
+  }
+}
+
+
+// ==========================
+// PROFILE PHOTOS
+// ==========================
+
+  img.profile {
+    &.tiny {
+      border-radius: 50px;
+      margin-right: 4px;
+    }
+  }
+
+// ==========================
+// BUDDY DISPLAY
+// ==========================
+
+.buddy {
+  padding-top: 20px;
+}
 
 // ==========================
 // FORMS
 // ==========================
 
-button, .button {
+button, .button,
+a.button, a.button:hover {
   background-color: $button_color;
+  color: white;
+  text-decoration: none;
 
   &:hover, &:focus {
     background-color: darken($button_color, 17%);
@@ -101,6 +159,10 @@ input {
   box-shadow: none;
   margin-bottom: .9em;
   font-family: 'Quattrocento';
+}
+
+textarea {
+  padding: .75rem 1em;
 }
 
 ::-webkit-input-placeholder { color:#777; }
@@ -124,4 +186,52 @@ input:-moz-placeholder { color:#777; }
     text-align: center;
     font-size: 14px;
   }
+}
+
+// ==========================
+// REVIEW
+// ==========================
+
+
+.review {
+  p {
+    margin: 1.25rem 0;
+  }
+
+  .star {
+    background-image: url("star.png");
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+
+    &.empty {
+      background-image: url("empty_star.png");
+    }
+  }
+
+  .user {
+    h5, img {
+      display: inline;
+      vertical-align: middle;
+    }
+  }
+
+  .rating {
+    p {
+      margin: 0;
+    }
+
+    h6, form input {
+      vertical-align: baseline;
+    }
+
+    .voting {
+      h6, form {
+        display: inline-block;
+        margin-right: 8px;
+      }
+    }
+  }
+
+
 }

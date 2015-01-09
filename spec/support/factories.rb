@@ -15,9 +15,10 @@ FactoryGirl.define do
   end
 
   factory :review do
-    comment "This review was awesome!"
+    comment "This resource was awesome!"
     rating 1
     user
     buddy
   end
+
 end

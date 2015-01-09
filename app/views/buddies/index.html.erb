@@ -1,5 +1,15 @@
-<%= paginate @buddies %>
+<%= form_tag buddies_path, method: :get %>
+<div class="row collapse search">
+  <div class="small-5 columns">
+    <%= text_field_tag :query, nil, placeholder: "Search"%>
+  </div>
+  <div class="small-1 columns end">
+    <%= submit_tag "Search", class: "button postfix" %>
+  </div>
+</div>
 
 <% @buddies.each do |buddy| %>
   <h3><%= link_to buddy.title, buddy %></h3>
 <% end %>
+
+<%= paginate @buddies %>
